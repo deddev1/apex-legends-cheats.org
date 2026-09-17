@@ -127,18 +127,39 @@ if (!home.includes('youtube-nocookie.com/embed/bZ2kGpS_gQ4')) {
   fail('Homepage is missing the official Apex Legends trailer')
 }
 
-const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8')
-if (sitemap.includes('<sitemapindex')) fail('sitemap.xml must be a single urlset, not an index')
-if (/forums\/(instructions|how-to-load)/.test(sitemap)) fail('Retired forum remains in sitemap.xml')
+const CHILD_SITEMAPS = [
+  'sitemap-pages.xml',
+  'sitemap-products.xml',
+  'sitemap-forums.xml',
+  'sitemap-images.xml',
+]
+const STALE_SITEMAPS = [
+  'sitemap-blogs.xml',
+  'sitemap-regions.xml',
+  'sitemap-index.xml',
+  'sitemap_index.xml',
+]
+const sitemapIndex = readFileSync(join(dist, 'sitemap.xml'), 'utf8')
+if (!sitemapIndex.includes('<sitemapindex')) fail('sitemap.xml must be a sitemap index')
+if (sitemapIndex.includes('xml-stylesheet')) {
+  fail('sitemap.xml must not embed xml-stylesheet (Worker injects it for browsers only)')
+}
+if (!sitemapIndex.trimStart().startsWith('<?xml version="1.0" encoding="UTF-8"?>')) {
+  fail('sitemap.xml must start with an XML declaration')
+}
+for (const child of CHILD_SITEMAPS) {
+  const loc = `${site}/${child}`
+  if (!sitemapIndex.includes(loc)) fail(`sitemap index missing child ${loc}`)
+}
+
 const expectedUrls = new Set(
   files
     .filter((file) => relative(dist, file).replaceAll('\\', '/') !== '404.html')
     .map(pageUrl),
 )
-const urlBlocks = sitemap.match(/<url>[\s\S]*?<\/url>/g) || []
-const pageLocs = urlBlocks.map((block) => block.match(/<loc>([^<]+)<\/loc>/)?.[1]).filter(Boolean)
-const uniqueSitemapUrls = new Set(pageLocs)
-const imageLocs = [...sitemap.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((match) => match[1])
+
+const parsePageLocs = (xml) =>
+  [...xml.matchAll(/<url>\s*<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
 const requiredImages = [
   '/media/apex-legends-soldier-hero.jpg',
   '/media/apex-legends-battle-royale.jpg',
@@ -146,49 +167,56 @@ const requiredImages = [
   '/media/apex-legends-product-hero.webp',
   '/media/apex-legends-product-cover.webp',
   '/og/apex-legends-cheats.jpg',
+  '/media/apex-hero-poster.jpg',
 ]
 
-for (const url of expectedUrls) {
-  if (!uniqueSitemapUrls.has(url)) fail(`sitemap.xml missing built page ${url}`)
-}
-for (const url of uniqueSitemapUrls) {
-  if (!expectedUrls.has(url)) fail(`sitemap.xml contains URL without a built page: ${url}`)
-}
-if (uniqueSitemapUrls.size !== pageLocs.length) fail('sitemap.xml contains duplicate URLs')
-if (urlBlocks.length !== expectedUrls.size) {
-  fail(`sitemap.xml must contain exactly ${expectedUrls.size} built page URLs`)
-}
-if ((sitemap.match(/<image:image>/g) || []).length < expectedUrls.size) {
-  fail('Every sitemap URL must include at least one image entry')
-}
-for (const block of urlBlocks) {
-  const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] || '(unknown)'
-  if (!block.includes('<image:image>') || !block.includes('<image:loc>')) {
-    fail(`sitemap URL missing image entry: ${loc}`)
+const contentPageLocs = []
+const allImageLocs = []
+for (const child of CHILD_SITEMAPS) {
+  const path = join(dist, child)
+  if (!existsSync(path)) fail(`dist/${child} is missing`)
+  const xml = readFileSync(path, 'utf8')
+  if (xml.includes('<sitemapindex')) fail(`${child} must be a urlset, not an index`)
+  if (/forums\/(instructions|how-to-load)/.test(xml)) fail(`Retired forum remains in ${child}`)
+  if (!xml.trimStart().startsWith('<?xml version="1.0" encoding="UTF-8"?>')) {
+    fail(`${child} must start with an XML declaration`)
   }
+  if (xml.includes('xml-stylesheet')) {
+    fail(`${child} must not embed xml-stylesheet (Worker injects it for browsers only)`)
+  }
+  const urlBlocks = xml.match(/<url>[\s\S]*?<\/url>/g) || []
+  for (const block of urlBlocks) {
+    const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] || '(unknown)'
+    if (!block.includes('<image:image>') || !block.includes('<image:loc>')) {
+      fail(`${child} URL missing image entry: ${loc}`)
+    }
+  }
+  const pageLocs = parsePageLocs(xml)
+  const imageLocs = [...xml.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((match) => match[1])
+  allImageLocs.push(...imageLocs)
+  if (child !== 'sitemap-images.xml') contentPageLocs.push(...pageLocs)
+}
+
+const uniqueContentUrls = new Set(contentPageLocs)
+for (const url of expectedUrls) {
+  if (!uniqueContentUrls.has(url)) fail(`Child sitemaps missing built page ${url}`)
+}
+for (const url of uniqueContentUrls) {
+  if (!expectedUrls.has(url)) fail(`Child sitemap contains URL without a built page: ${url}`)
+}
+if (uniqueContentUrls.size !== contentPageLocs.length) {
+  fail('Content sitemaps contain duplicate page URLs')
+}
+if (uniqueContentUrls.size !== expectedUrls.size) {
+  fail(`Content sitemaps must list exactly ${expectedUrls.size} built page URLs`)
 }
 for (const image of requiredImages) {
-  if (!imageLocs.some((loc) => loc.endsWith(image))) {
-    fail(`sitemap.xml missing required image ${image}`)
+  if (!allImageLocs.some((loc) => loc.endsWith(image))) {
+    fail(`Sitemaps missing required image ${image}`)
   }
 }
-if (!sitemap.trimStart().startsWith('<?xml version="1.0" encoding="UTF-8"?>')) {
-  fail('sitemap.xml must start with an XML declaration')
-}
-if (sitemap.includes('xml-stylesheet')) {
-  fail('sitemap.xml must not embed xml-stylesheet (Worker injects it for browsers only)')
-}
-for (const stale of [
-  'sitemap-pages.xml',
-  'sitemap-products.xml',
-  'sitemap-forums.xml',
-  'sitemap-images.xml',
-  'sitemap-blogs.xml',
-  'sitemap-regions.xml',
-  'sitemap-index.xml',
-  'sitemap_index.xml',
-]) {
-  if (existsSync(join(dist, stale))) fail(`Stale split sitemap still published: ${stale}`)
+for (const stale of STALE_SITEMAPS) {
+  if (existsSync(join(dist, stale))) fail(`Stale sitemap still published: ${stale}`)
 }
 
 if (!existsSync(join(dist, 'sitemap.xml'))) fail('dist/sitemap.xml is missing')
@@ -196,11 +224,18 @@ if (!existsSync(join(dist, 'robots.txt'))) fail('dist/robots.txt is missing')
 if (!existsSync(join(dist, '_routes.json'))) fail('dist/_routes.json is missing')
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
-if (!robots.includes('Sitemap: https://apexlegendscheats.org/sitemap.xml')) {
-  fail('robots.txt must point at the canonical HTTPS sitemap')
+for (const child of CHILD_SITEMAPS) {
+  if (!robots.includes(`Sitemap: ${site}/${child}`)) {
+    fail(`robots.txt must declare Sitemap: ${site}/${child}`)
+  }
 }
 if (!robots.includes('Allow: /sitemap.xml')) {
   fail('robots.txt must explicitly allow /sitemap.xml')
+}
+for (const child of CHILD_SITEMAPS) {
+  if (!robots.includes(`Allow: /${child}`)) {
+    fail(`robots.txt must explicitly allow /${child}`)
+  }
 }
 if (!robots.includes('User-agent: Googlebot')) {
   fail('robots.txt must explicitly allow Googlebot')
@@ -209,6 +244,11 @@ if (!robots.includes('User-agent: Googlebot')) {
 const routes = JSON.parse(readFileSync(join(dist, '_routes.json'), 'utf8'))
 if (!routes.exclude?.includes('/sitemap.xml') || !routes.exclude?.includes('/robots.txt')) {
   fail('_routes.json must exclude /sitemap.xml and /robots.txt from Functions')
+}
+for (const child of CHILD_SITEMAPS) {
+  if (!routes.exclude?.includes(`/${child}`)) {
+    fail(`_routes.json must exclude /${child} from Functions`)
+  }
 }
 
 for (const asset of [
@@ -221,6 +261,12 @@ for (const asset of [
   'public/videos/apex-card-loop.mp4',
   'public/videos/apex-product-preview.mp4',
   'public/media/apex-hero-poster.jpg',
+  'public/media/apex-hero-poster-640w.webp',
+  'public/media/apex-hero-poster-960w.webp',
+  'public/media/apex-hero-poster-1280w.webp',
+  'public/media/apex-legends-soldier-hero-800w.webp',
+  'public/media/apex-legends-battle-royale-800w.webp',
+  'public/media/apex-legends-ranked-squad-800w.webp',
   'public/sitemap.css',
   'public/_routes.json',
   'functions/_middleware.js',
@@ -229,11 +275,14 @@ for (const asset of [
 }
 
 const redirects = readFileSync(join(root, 'public', '_redirects'), 'utf8')
-if (!redirects.includes('/sitemap-pages.xml')) {
-  fail('_redirects missing legacy sitemap → /sitemap.xml redirects')
-}
 if (!redirects.includes('/sitemap-index.xml')) {
   fail('_redirects missing sitemap-index.xml → /sitemap.xml redirect')
+}
+if (redirects.includes('/sitemap-pages.xml     /sitemap.xml')) {
+  fail('_redirects must not redirect live child sitemap sitemap-pages.xml')
+}
+if (redirects.includes('/sitemap-products.xml  /sitemap.xml')) {
+  fail('_redirects must not redirect live child sitemap sitemap-products.xml')
 }
 
 const headers = readFileSync(join(root, 'public', '_headers'), 'utf8')
@@ -242,6 +291,11 @@ if (!headers.includes('Content-Type: text/html; charset=utf-8')) {
 }
 if (!headers.includes('/sitemap.xml')) {
   fail('_headers missing /sitemap.xml Content-Type')
+}
+for (const child of CHILD_SITEMAPS) {
+  if (!headers.includes(`/${child}`)) {
+    fail(`_headers missing /${child} Content-Type`)
+  }
 }
 if (!headers.includes('application/xml; charset=utf-8')) {
   fail('_headers missing XML charset Content-Type')

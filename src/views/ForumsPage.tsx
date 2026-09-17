@@ -42,11 +42,11 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
                 Forums · Setup · {SITE_HOST}
               </p>
               <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                Apex Legends Cheats Forums
+                Apex Legends Cheats guides &amp; forums
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-                Setup threads for Apex Legends Cheats — features, hotkeys, complete setup,
-                disable antivirus, how to load, and Undetected status before you checkout.
+                Setup guides for Apex Legends Cheats — features, hotkeys, complete setup,
+                antivirus exclusions, load order and Undetected status before checkout.
               </p>
               <div className="relative z-50 mt-7">
                 <HeroSearch
@@ -127,13 +127,11 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">
                       {post.excerpt}
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white transition-colors group-hover:text-white/80">
-                      Open thread
-                      <ArrowRight
-                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                        strokeWidth={1.75}
-                      />
-                    </span>
+                    <ArrowRight
+                      className="mt-4 h-4 w-4 text-white/70 transition-transform group-hover:translate-x-0.5"
+                      strokeWidth={1.75}
+                      aria-hidden
+                    />
                   </a>
                 ))}
               </div>

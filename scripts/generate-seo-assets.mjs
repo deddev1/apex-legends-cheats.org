@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs'
+import { existsSync, unlinkSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
@@ -232,11 +232,76 @@ function encodeHeroClip(ff, heroMp4, { start, duration, width, baseName, crfH264
   return true
 }
 
-function encodeHeroClips() {
+async function generateGameplayResponsive() {
+  const stills = [
+    ['apex-legends-soldier-hero.jpg', 'apex-legends-soldier-hero'],
+    ['apex-legends-battle-royale.jpg', 'apex-legends-battle-royale'],
+    ['apex-legends-ranked-squad.jpg', 'apex-legends-ranked-squad'],
+  ]
+  for (const [file, base] of stills) {
+    const input = join(mediaDir, file)
+    if (!existsSync(input)) continue
+    for (const w of [480, 800]) {
+      const h = Math.round((w * 9) / 16)
+      await sharp(input)
+        .rotate()
+        .resize(w, h, { fit: 'cover', position: 'centre' })
+        .webp({ quality: 74, effort: 4 })
+        .toFile(join(mediaDir, `${base}-${w}w.webp`))
+    }
+  }
+
+  const productHero = join(mediaDir, 'apex-legends-product-hero.webp')
+  if (existsSync(productHero)) {
+    for (const w of [480, 800]) {
+      const h = Math.round((w * 9) / 16)
+      await sharp(productHero)
+        .resize(w, h, { fit: 'cover', position: 'centre' })
+        .webp({ quality: 74, effort: 4 })
+        .toFile(join(mediaDir, `apex-legends-product-hero-${w}w.webp`))
+    }
+  }
+}
+
+async function generateHeroPosters(ff) {
+  const heroMp4 = join(videoDir, 'apex-hero.mp4')
+  const posterJpg = join(mediaDir, 'apex-hero-poster.jpg')
+  const framePath = join(mediaDir, '_hero-poster-frame.jpg')
+  let input = null
+
+  if (existsSync(heroMp4) && ff) {
+    const frame = spawnSync(
+      ff,
+      ['-y', '-ss', '0.35', '-i', heroMp4, '-frames:v', '1', '-q:v', '3', framePath],
+      { stdio: 'pipe' },
+    )
+    if (frame.status === 0 && existsSync(framePath)) input = framePath
+  }
+  if (!input && existsSync(posterJpg)) input = posterJpg
+  if (!input) return
+
+  await sharp(input)
+    .rotate()
+    .resize(1280, 720, { fit: 'cover', position: 'centre' })
+    .jpeg({ quality: 76, mozjpeg: true })
+    .toFile(posterJpg)
+
+  for (const w of [640, 960, 1280]) {
+    const h = Math.round((w * 720) / 1280)
+    await sharp(input)
+      .rotate()
+      .resize(w, h, { fit: 'cover', position: 'centre' })
+      .webp({ quality: 72, effort: 4 })
+      .toFile(join(mediaDir, `apex-hero-poster-${w}w.webp`))
+  }
+
+  if (input === framePath && existsSync(framePath)) unlinkSync(framePath)
+}
+
+function encodeHeroClips(ff) {
   const heroMp4 = join(videoDir, 'apex-hero.mp4')
   if (!existsSync(heroMp4)) return
 
-  const ff = resolveFfmpeg()
   encodeHeroClip(ff, heroMp4, {
     start: 1,
     duration: 6,
@@ -263,4 +328,7 @@ if (hasCheatSources()) {
   console.log('Generated first-party SEO and product artwork (add source-media/cheat/01–06.jpg for gameplay shots)')
 }
 
-encodeHeroClips()
+const ff = resolveFfmpeg()
+encodeHeroClips(ff)
+await generateHeroPosters(ff)
+await generateGameplayResponsive()

@@ -46,11 +46,7 @@
 /blog/:slug     /forums/:slug  301
 /forums/:slug/  /forums/:slug  301
 
-# Legacy / alternate sitemap URLs → single canonical sitemap
-/sitemap-pages.xml     /sitemap.xml  301
-/sitemap-products.xml  /sitemap.xml  301
-/sitemap-forums.xml    /sitemap.xml  301
-/sitemap-images.xml    /sitemap.xml  301
+# Legacy alternate sitemap filenames → sitemap index (child sitemaps are static files)
 /sitemap-blogs.xml     /sitemap.xml  301
 /sitemap-regions.xml   /sitemap.xml  301
 /sitemap-index.xml     /sitemap.xml  301

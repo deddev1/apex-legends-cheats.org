@@ -1,7 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 
 const HERO_VIDEO_BASE = '/videos/apex-hero'
-const HERO_POSTER = '/media/apex-hero-poster.jpg'
+import {
+  HERO_POSTER_ALT,
+  HERO_POSTER_HEIGHT,
+  HERO_POSTER_JPG,
+  HERO_POSTER_SIZES,
+  HERO_POSTER_WEBP_SRCSET,
+  HERO_POSTER_WIDTH,
+} from '../data/hero-poster'
 const START_AT = 0
 /** Hero WebM is larger than MP4 in our encode — prefer MP4 when both are present. */
 const HERO_WEBM_FIRST = false
@@ -178,25 +185,28 @@ export function VideoBg({ image, imageAlt = '', readable = false }: VideoBgProps
         />
       ) : (
         <>
-          <img
-            src={HERO_POSTER}
-            alt=""
-            width={1280}
-            height={720}
-            decoding="async"
-            fetchPriority="high"
-            className={`hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center transition-opacity duration-700 ${
-              videoShowing ? 'opacity-0' : 'opacity-100'
-            }`}
-            aria-hidden
-          />
+          <picture>
+            <source type="image/webp" srcSet={HERO_POSTER_WEBP_SRCSET} sizes={HERO_POSTER_SIZES} />
+            <img
+              src={HERO_POSTER_JPG}
+              alt={HERO_POSTER_ALT}
+              width={HERO_POSTER_WIDTH}
+              height={HERO_POSTER_HEIGHT}
+              sizes={HERO_POSTER_SIZES}
+              decoding="sync"
+              fetchPriority="high"
+              className={`hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center transition-opacity duration-700 ${
+                videoShowing ? 'opacity-0' : 'opacity-100'
+              }`}
+            />
+          </picture>
           {loadVideo && !failed ? (
             <video
               ref={ref}
               className={`hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-[center_center] transition-opacity duration-700 ${
                 videoShowing ? 'opacity-100' : 'opacity-0'
               }`}
-              poster={HERO_POSTER}
+              poster={HERO_POSTER_JPG}
               muted
               playsInline
               loop

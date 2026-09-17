@@ -25,21 +25,22 @@ export function FaqPage() {
               Apex Legends Cheats FAQ
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/55">
-              Frequently asked questions about Apex Legends Cheats for Apex Legends — Undetected status,
-              ESP, soft aim, radar, how to buy, how to load, support, reviews and refunds.
+              Compatibility, setup and live status for Apex Legends Cheats on Windows PC — plus
+              Undetected updates, ESP, soft aim, radar, checkout, loader steps, support, reviews
+              and refunds.
             </p>
             <p className="mt-3 text-sm text-white/45">
               Related:{' '}
               <a href="/" className="text-white/75 underline-offset-2 hover:underline">
-                Buy Apex Legends Cheats
+                Homepage
               </a>
               {' · '}
               <a href="/support" className="text-white/75 underline-offset-2 hover:underline">
-                Support
+                Loader help
               </a>
               {' · '}
               <a href="/reviews" className="text-white/75 underline-offset-2 hover:underline">
-                Reviews
+                Buyer reviews
               </a>
               {' · '}
               <a
@@ -48,7 +49,7 @@ export function FaqPage() {
                 rel="noopener noreferrer"
                 className="text-white/75 underline-offset-2 hover:underline"
               >
-                Apex Legends on Steam
+                {OFFICIAL_APEX_LINKS[1].label}
               </a>
             </p>
           </div>
@@ -83,10 +84,10 @@ export function FaqPage() {
                 href="/support"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white hover:bg-white/5"
               >
-                Support
+                Help desk
               </a>
               <CheckoutLink className="cta-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white">
-                Buy Apex Legends Cheats
+                Checkout
               </CheckoutLink>
             </div>
           </div>

@@ -41,18 +41,18 @@ export function ReviewsPage() {
               Apex Legends Cheats Reviews
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/55">
-              Reviews from Apex Legends players who bought Apex Legends Cheats — ESP accuracy,
-              Undetected honesty, and whether the build held after the last patch. Read the{' '}
+              Apex Legends Cheats reviews before you buy — ESP accuracy, Undetected honesty, and
+              whether the build held after the last patch. See the{' '}
               <a href="/apex-legends-cheats" className="text-white/80 underline-offset-2 hover:underline">
-                product page
+                features &amp; price
               </a>
               ,{' '}
               <a href="/support" className="text-white/80 underline-offset-2 hover:underline">
-                support
+                loader help
               </a>
               , or{' '}
               <a href="/forums" className="text-white/80 underline-offset-2 hover:underline">
-                forums
+                setup forums
               </a>
               . Play Apex Legends via{' '}
               <a
@@ -61,7 +61,7 @@ export function ReviewsPage() {
                 rel="noopener noreferrer"
                 className="text-white/80 underline-offset-2 hover:underline"
               >
-                Steam
+                Steam store
               </a>
               .
             </p>
@@ -148,7 +148,7 @@ export function ReviewsPage() {
               <p className="mt-3 text-sm leading-relaxed text-white/55">
                 Open the guide, confirm Undetected status, then checkout — or visit{' '}
                 <a href="/support" className="text-white underline-offset-2 hover:underline">
-                  Apex Legends Cheats support
+                  setup help
                 </a>{' '}
                 for load and inject help.
               </p>
@@ -158,7 +158,7 @@ export function ReviewsPage() {
                 href="/apex-legends-cheats"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
               >
-                Product details
+                Feature list
               </a>
               <CheckoutLink className="cta-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white">
                 Buy now

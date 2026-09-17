@@ -1,16 +1,31 @@
 User-agent: Googlebot
 Allow: /
+Allow: /sitemap-pages.xml
+Allow: /sitemap-products.xml
+Allow: /sitemap-forums.xml
+Allow: /sitemap-images.xml
 Allow: /sitemap.xml
 Allow: /robots.txt
 
 User-agent: Google-InspectionTool
 Allow: /
+Allow: /sitemap-pages.xml
+Allow: /sitemap-products.xml
+Allow: /sitemap-forums.xml
+Allow: /sitemap-images.xml
 Allow: /sitemap.xml
 Allow: /robots.txt
 
 User-agent: *
 Allow: /
+Allow: /sitemap-pages.xml
+Allow: /sitemap-products.xml
+Allow: /sitemap-forums.xml
+Allow: /sitemap-images.xml
 Allow: /sitemap.xml
 Allow: /robots.txt
 
-Sitemap: https://apexlegendscheats.org/sitemap.xml
+Sitemap: https://apexlegendscheats.org/sitemap-pages.xml
+Sitemap: https://apexlegendscheats.org/sitemap-products.xml
+Sitemap: https://apexlegendscheats.org/sitemap-forums.xml
+Sitemap: https://apexlegendscheats.org/sitemap-images.xml

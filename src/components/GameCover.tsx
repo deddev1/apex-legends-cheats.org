@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react'
 import { getGameImage, getImageAlt, getImageTitle, getProductHeroImage } from '../data/images'
 import { APEX_CARD_LOOP_MP4, APEX_CARD_LOOP_WEBM } from '../data/media'
+import { getResponsiveSpec } from '../data/responsive-images'
+import { ResponsiveImage } from './ResponsiveImage'
 
 type GameCoverProps = {
   slug: string
@@ -56,33 +58,37 @@ export function GameCover({
 
   const eager = priority || variant === 'product'
   const cardLoop = slug === 'apex-legends' && variant === 'catalog'
+  const responsive = src ? getResponsiveSpec(src) : undefined
+  const coverSizes =
+    aspect === 'hero' || variant === 'product'
+      ? '100vw'
+      : fill
+        ? '(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw'
+        : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
 
   return (
     <div className={`relative overflow-hidden bg-z-elevated ${ratio} ${className}`}>
       {!failed && src ? (
-        <img
+        <div
           key={src}
-          src={src}
-          alt={getImageAlt(slug, name, variant)}
-          title={getImageTitle(slug, name, variant)}
-          width={variant === 'product' ? 1440 : 1000}
-          height={variant === 'product' ? 810 : 1000}
-          loading={eager ? 'eager' : 'lazy'}
-          decoding={eager ? 'sync' : 'async'}
-          fetchPriority={eager ? 'high' : 'auto'}
-          sizes={
-            aspect === 'hero' || variant === 'product'
-              ? '100vw'
-              : fill
-                ? '(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw'
-                : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-          }
-          onError={() => {
-            if (index + 1 < sources.length) setIndex((i) => i + 1)
-            else setFailed(true)
-          }}
-          className={`game-cover-img absolute inset-0 z-0 h-full w-full object-cover object-center${variant === 'product' ? ' game-cover-img--color' : ''}`}
-        />
+          className={`game-cover-img absolute inset-0 z-0 h-full w-full${variant === 'product' ? ' game-cover-img--color' : ''}`}
+        >
+          <ResponsiveImage
+            spec={responsive}
+            src={src}
+            alt={getImageAlt(slug, name, variant)}
+            title={getImageTitle(slug, name, variant)}
+            width={variant === 'product' ? 1280 : 1000}
+            height={variant === 'product' ? 720 : 1000}
+            sizes={coverSizes}
+            priority={eager}
+            className="h-full w-full object-cover object-center"
+            onError={() => {
+              if (index + 1 < sources.length) setIndex((i) => i + 1)
+              else setFailed(true)
+            }}
+          />
+        </div>
       ) : null}
       {cardLoop && !failed && src ? (
         <video

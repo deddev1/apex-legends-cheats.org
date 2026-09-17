@@ -31,7 +31,7 @@ export const SITE_FAQS: FaqItem[] = [
   },
   {
     q: 'How do I buy Apex Legends Cheats?',
-    a: 'Start on the homepage, confirm Undetected status and review the price. Open Product details for compatibility and features, then continue to checkout for digital delivery.',
+    a: 'Start on the homepage, confirm Undetected status and review the price. Open the product page for compatibility and ESP, radar and aim features, then continue to checkout for digital delivery.',
   },
   {
     q: 'How do I load Apex Legends Cheats?',

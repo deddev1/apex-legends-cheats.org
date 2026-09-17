@@ -21,7 +21,7 @@ export function SupportPage() {
               {SITE_NAME} · Help · {SITE_HOST}
             </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-              Apex Legends Cheats Support
+              Apex Legends Cheats loader &amp; setup support
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/55">
               {SUPPORT_INTRO} Play Apex Legends from the{' '}
@@ -44,19 +44,19 @@ export function SupportPage() {
               </a>
               . Product help stays on{' '}
               <a href="/apex-legends-cheats" className="text-white/80 underline-offset-2 hover:underline">
-                product details
+                ESP &amp; price
               </a>
               ,{' '}
               <a href="/forums" className="text-white/80 underline-offset-2 hover:underline">
-                forums
+                setup threads
               </a>
-              , and{' '}
+              ,{' '}
               <a href="/reviews" className="text-white/80 underline-offset-2 hover:underline">
-                reviews
+                ratings
               </a>
               , and the{' '}
               <a href="/faq" className="text-white/80 underline-offset-2 hover:underline">
-                full FAQ
+                FAQ hub
               </a>
               .
             </p>
@@ -112,10 +112,10 @@ export function SupportPage() {
                 href="/apex-legends-cheats"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
               >
-                Product details
+                Feature list
               </a>
               <CheckoutLink className="cta-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white">
-                Buy Apex Legends Cheats
+                Buy license
               </CheckoutLink>
             </div>
           </div>

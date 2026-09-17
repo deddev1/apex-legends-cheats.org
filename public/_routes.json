@@ -3,6 +3,10 @@
   "include": ["/*"],
   "exclude": [
     "/sitemap.xml",
+    "/sitemap-pages.xml",
+    "/sitemap-products.xml",
+    "/sitemap-forums.xml",
+    "/sitemap-images.xml",
     "/sitemap.css",
     "/robots.txt",
     "/favicon.svg",

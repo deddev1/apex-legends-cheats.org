@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { getResponsiveSpec } from '../data/responsive-images'
+import { ResponsiveImage } from './ResponsiveImage'
 
 const REVIEWS_VIDEO = '/videos/reviews-neon'
 
@@ -11,6 +13,7 @@ type LocalVideoStripProps = {
   /** Start loading immediately (home / reviews strips) */
   eager?: boolean
   poster?: string
+  posterAlt?: string
 }
 
 function prefersReducedMotion() {
@@ -30,6 +33,7 @@ export function LocalVideoStrip({
   startAt = 0,
   eager = false,
   poster = '/media/apex-legends-battle-royale.jpg',
+  posterAlt = 'Apex Legends ranked squad gameplay still',
 }: LocalVideoStripProps) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const ref = useRef<HTMLVideoElement>(null)
@@ -164,11 +168,13 @@ export function LocalVideoStrip({
     >
       <div className="absolute inset-0 z-0 bg-z-band" aria-hidden />
       {poster ? (
-        <img
+        <ResponsiveImage
+          spec={getResponsiveSpec(poster)}
           src={poster}
-          alt=""
-          aria-hidden
-          decoding="async"
+          alt={posterAlt}
+          width={800}
+          height={450}
+          sizes="100vw"
           className="absolute inset-0 z-0 h-full w-full object-cover opacity-70"
         />
       ) : null}

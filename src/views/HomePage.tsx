@@ -53,8 +53,8 @@ export function HomePage() {
                   {HOME_HEADINGS.h1}
                 </h1>
                 <p className="mt-5 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
-                  Apex Legends cheats for Windows PC with player ESP, soft aim, 2D radar and live
-                  loader status for current Steam and EA app builds.
+                  Apex Legends cheats for Windows PC with player ESP, aimbot-style soft aim, 2D
+                  radar and live loader status for current Steam and EA app builds.
                 </p>
 
                 <div className="relative z-50 mt-7">
@@ -187,13 +187,11 @@ export function HomePage() {
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">
                     {post.excerpt}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white transition-colors group-hover:text-white/80">
-                    Read guide
-                    <ArrowRight
-                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                      strokeWidth={1.75}
-                    />
-                  </span>
+                  <ArrowRight
+                    className="mt-4 h-4 w-4 text-white/70 transition-transform group-hover:translate-x-0.5"
+                    strokeWidth={1.75}
+                    aria-hidden
+                  />
                 </a>
               ))}
             </div>
@@ -277,7 +275,7 @@ export function HomePage() {
                 </p>
               </div>
               <CheckoutLink className="cta-gradient mt-8 inline-flex w-full items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:w-fit">
-                Buy Apex Legends Cheats
+                Go to checkout
               </CheckoutLink>
             </div>
           </div>

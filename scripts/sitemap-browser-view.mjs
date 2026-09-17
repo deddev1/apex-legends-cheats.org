@@ -6,14 +6,19 @@ import { join } from 'node:path'
  * dev + preview (production uses public/_headers on Cloudflare Pages).
  */
 export function sitemapBrowserViewPlugin(root = process.cwd()) {
+  const xmlType = 'application/xml; charset=utf-8'
+  const sitemapPaths = [
+    'sitemap.xml',
+    'sitemap-pages.xml',
+    'sitemap-products.xml',
+    'sitemap-forums.xml',
+    'sitemap-images.xml',
+  ]
   const files = new Map([
-    [
-      '/sitemap.xml',
-      {
-        path: join(root, 'public', 'sitemap.xml'),
-        type: 'application/xml; charset=utf-8',
-      },
-    ],
+    ...sitemapPaths.map((name) => [
+      `/${name}`,
+      { path: join(root, 'public', name), type: xmlType },
+    ]),
     [
       '/robots.txt',
       {

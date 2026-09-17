@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://apexlegendscheats.org/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/" />
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-soldier-hero.jpg</image:loc>
+      <image:title>Apex Legends Cheats gameplay screenshot</image:title>
+      <image:caption>In-game ESP and radar preview for Apex Legends Cheats on PC.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://apexlegendscheats.org/reviews</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/reviews" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/reviews" />
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-battle-royale.jpg</image:loc>
+      <image:title>Apex Legends Cheats review gameplay</image:title>
+      <image:caption>Gameplay screenshot on the reviews page.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://apexlegendscheats.org/faq</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/faq" />
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-ranked-squad.jpg</image:loc>
+      <image:title>Apex Legends ESP ranked gameplay</image:title>
+      <image:caption>Ranked match ESP reference artwork.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://apexlegendscheats.org/apex-legends-cheats</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/apex-legends-cheats" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/apex-legends-cheats" />
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-product-hero.webp</image:loc>
+      <image:title>Apex Legends Cheats gameplay preview</image:title>
+      <image:caption>In-match ESP and radar on the product page.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://apexlegendscheats.org/apex-legends-cheats</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/apex-legends-cheats" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/apex-legends-cheats" />
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-product-cover.webp</image:loc>
+      <image:title>Apex Legends Cheats buy card gameplay</image:title>
+      <image:caption>Gameplay screenshot on the product card.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://apexlegendscheats.org/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/" />
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/og/apex-legends-cheats.jpg</image:loc>
+      <image:title>Apex Legends Cheats social preview</image:title>
+      <image:caption>Open Graph image for apexlegendscheats.org.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://apexlegendscheats.org/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/" />
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/media/apex-hero-poster.jpg</image:loc>
+      <image:title>Apex Legends Cheats hero video poster</image:title>
+      <image:caption>Poster frame for the homepage hero gameplay clip.</image:caption>
+    </image:image>
+  </url>
+</urlset>

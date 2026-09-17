@@ -170,7 +170,7 @@ export function SiteLinkHub({ currentPath, variant = 'section' }: SiteLinkHubPro
                   href="/forums"
                   className="text-sm font-medium text-white/80 underline-offset-2 hover:text-z-soft hover:underline"
                 >
-                  Browse forum threads →
+                  All forums
                 </a>
               </li>
             </ul>

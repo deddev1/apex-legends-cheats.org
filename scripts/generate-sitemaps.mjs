@@ -1,6 +1,6 @@
 /**
- * Single sitemap at /sitemap.xml — every indexed page URL + image sitemap entries.
- * Every <url> must include ≥1 <image:image>. Every first-party still image must appear.
+ * Four child sitemaps + sitemap index at /sitemap.xml (GSC-friendly).
+ * Every page URL appears once; every <url> has ≥1 image:image entry.
  */
 import { existsSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -22,7 +22,14 @@ const PRODUCT_COVER = '/media/apex-legends-product-cover.webp'
 const OG_DEFAULT = '/og/apex-legends-cheats.jpg'
 const HERO_POSTER = '/media/apex-hero-poster.jpg'
 
-/** All indexable still images that must appear in the sitemap at least once. */
+export const CHILD_SITEMAPS = [
+  'sitemap-pages.xml',
+  'sitemap-products.xml',
+  'sitemap-forums.xml',
+  'sitemap-images.xml',
+]
+
+/** All indexable still images — must appear in sitemap-images.xml (and across site). */
 const ALL_SITE_IMAGES = [
   SOLDIER,
   TACTICAL,
@@ -39,6 +46,48 @@ const FORUM_IMAGES = {
   'complete-setup': OBJECTIVE,
   'disable-antivirus': TACTICAL,
   'undetected-status': OBJECTIVE,
+}
+
+/** Page URL where each image is primarily used (image sitemap requires a page loc). */
+const IMAGE_PAGE_FOR = {
+  [SOLDIER]: '/',
+  [TACTICAL]: '/reviews',
+  [OBJECTIVE]: '/faq',
+  [PRODUCT_HERO]: '/apex-legends-cheats',
+  [PRODUCT_COVER]: '/apex-legends-cheats',
+  [OG_DEFAULT]: '/',
+  [HERO_POSTER]: '/',
+}
+
+const IMAGE_META = {
+  [SOLDIER]: {
+    title: 'Apex Legends Cheats gameplay screenshot',
+    caption: 'In-game ESP and radar preview for Apex Legends Cheats on PC.',
+  },
+  [TACTICAL]: {
+    title: 'Apex Legends Cheats review gameplay',
+    caption: 'Gameplay screenshot on the reviews page.',
+  },
+  [OBJECTIVE]: {
+    title: 'Apex Legends ESP ranked gameplay',
+    caption: 'Ranked match ESP reference artwork.',
+  },
+  [PRODUCT_HERO]: {
+    title: 'Apex Legends Cheats gameplay preview',
+    caption: 'In-match ESP and radar on the product page.',
+  },
+  [PRODUCT_COVER]: {
+    title: 'Apex Legends Cheats buy card gameplay',
+    caption: 'Gameplay screenshot on the product card.',
+  },
+  [OG_DEFAULT]: {
+    title: 'Apex Legends Cheats social preview',
+    caption: 'Open Graph image for apexlegendscheats.org.',
+  },
+  [HERO_POSTER]: {
+    title: 'Apex Legends Cheats hero video poster',
+    caption: 'Poster frame for the homepage hero gameplay clip.',
+  },
 }
 
 function escapeXml(value) {
@@ -109,75 +158,93 @@ ${imageXml}
   </url>`
 }
 
-function buildSitemap(games, forums) {
+function wrapUrlset(entries) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${entries.join('\n')}
+</urlset>
+`
+}
+
+function buildPagesSitemap() {
   const entries = [
     urlEntry({
       path: '/',
       priority: '1.0',
       changefreq: 'daily',
       images: [
-        {
-          src: SOLDIER,
-          title: 'Apex Legends Cheats gameplay screenshot',
-          caption: 'In-game ESP and radar preview for Apex Legends Cheats on PC.',
-        },
-        {
-          src: PRODUCT_COVER,
-          title: 'Apex Legends Cheats product gameplay',
-          caption: 'Gameplay screenshot from the Apex Legends Cheats loader.',
-        },
-        {
-          src: HERO_POSTER,
-          title: 'Apex Legends Cheats hero video poster',
-          caption: 'Poster frame for the homepage hero gameplay clip.',
-        },
-        {
-          src: OG_DEFAULT,
-          title: 'Apex Legends Cheats Social Preview',
-          caption: 'Open Graph image for apexlegendscheats.org.',
-        },
+        { src: SOLDIER, ...IMAGE_META[SOLDIER] },
+        { src: PRODUCT_COVER, ...IMAGE_META[PRODUCT_COVER] },
+        { src: HERO_POSTER, ...IMAGE_META[HERO_POSTER] },
+        { src: OG_DEFAULT, ...IMAGE_META[OG_DEFAULT] },
       ],
     }),
-    ...games.map((game) =>
-      urlEntry({
-        path: `/${game.slug}-cheats`,
-        priority: '0.9',
-        changefreq: 'weekly',
-        images: [
-          {
-            src: PRODUCT_HERO,
-            title: 'Apex Legends Cheats gameplay preview',
-            caption: 'In-match ESP and radar screenshot on the product page.',
-          },
-          {
-            src: PRODUCT_COVER,
-            title: 'Apex Legends Cheats buy card gameplay',
-            caption: 'Gameplay screenshot on the Apex Legends Cheats product card.',
-          },
-          {
-            src: OBJECTIVE,
-            title: 'Apex Legends ESP ranked gameplay',
-            caption: 'Product features, compatibility, status and price before checkout.',
-          },
-          {
-            src: OG_DEFAULT,
-            title: 'Apex Legends Cheats share image',
-            caption: 'Social preview for Apex Legends Cheats product listing.',
-          },
-        ],
-      }),
-    ),
+    urlEntry({
+      path: '/reviews',
+      priority: '0.8',
+      changefreq: 'weekly',
+      images: [{ src: TACTICAL, ...IMAGE_META[TACTICAL] }],
+    }),
+    urlEntry({
+      path: '/faq',
+      priority: '0.75',
+      changefreq: 'monthly',
+      images: [{ src: OBJECTIVE, ...IMAGE_META[OBJECTIVE] }],
+    }),
+    urlEntry({
+      path: '/support',
+      priority: '0.75',
+      changefreq: 'weekly',
+      images: [{ src: TACTICAL, ...IMAGE_META[TACTICAL] }],
+    }),
+    urlEntry({
+      path: '/privacy',
+      priority: '0.4',
+      changefreq: 'yearly',
+      images: [{ src: OG_DEFAULT, ...IMAGE_META[OG_DEFAULT] }],
+    }),
+    urlEntry({
+      path: '/terms',
+      priority: '0.4',
+      changefreq: 'yearly',
+      images: [{ src: OG_DEFAULT, ...IMAGE_META[OG_DEFAULT] }],
+    }),
+    urlEntry({
+      path: '/refunds',
+      priority: '0.45',
+      changefreq: 'yearly',
+      images: [{ src: OG_DEFAULT, ...IMAGE_META[OG_DEFAULT] }],
+    }),
+  ]
+  return wrapUrlset(entries)
+}
+
+function buildProductsSitemap(games) {
+  const entries = games.map((game) =>
+    urlEntry({
+      path: `/${game.slug}-cheats`,
+      priority: '0.9',
+      changefreq: 'weekly',
+      images: [
+        { src: PRODUCT_HERO, ...IMAGE_META[PRODUCT_HERO] },
+        { src: PRODUCT_COVER, ...IMAGE_META[PRODUCT_COVER] },
+        { src: OBJECTIVE, ...IMAGE_META[OBJECTIVE] },
+        { src: OG_DEFAULT, ...IMAGE_META[OG_DEFAULT] },
+      ],
+    }),
+  )
+  return wrapUrlset(entries)
+}
+
+function buildForumsSitemap(forums) {
+  const entries = [
     urlEntry({
       path: '/forums',
       priority: '0.85',
       changefreq: 'weekly',
-      images: [
-        {
-          src: OBJECTIVE,
-          title: 'Apex Legends Cheats Forum Artwork',
-          caption: 'Artwork reference for setup and feature threads.',
-        },
-      ],
+      images: [{ src: OBJECTIVE, title: 'Apex Legends Cheats guides', caption: 'Forum index artwork.' }],
     }),
     ...forums.map((forum) =>
       urlEntry({
@@ -188,96 +255,53 @@ function buildSitemap(games, forums) {
         images: [
           {
             src: FORUM_IMAGES[forum.slug] || OBJECTIVE,
-            title: `${forum.title} Artwork`,
-            caption: `Visible Apex Legends reference for ${forum.title}.`,
+            title: `${forum.title} guide artwork`,
+            caption: `Guide artwork for ${forum.title}.`,
           },
         ],
       }),
     ),
-    urlEntry({
-      path: '/reviews',
-      priority: '0.8',
-      changefreq: 'weekly',
-      images: [
-        {
-          src: TACTICAL,
-          title: 'Apex Legends Cheats Review Artwork',
-          caption: 'Artwork accompanying verified buyer reviews.',
-        },
-      ],
-    }),
-    urlEntry({
-      path: '/faq',
-      priority: '0.75',
-      changefreq: 'monthly',
-      images: [
-        {
-          src: OBJECTIVE,
-          title: 'Apex Legends Cheats FAQ Artwork',
-          caption: 'Product artwork accompanying pre-purchase answers.',
-        },
-      ],
-    }),
-    urlEntry({
-      path: '/support',
-      priority: '0.75',
-      changefreq: 'weekly',
-      images: [
-        {
-          src: TACTICAL,
-          title: 'Apex Legends Cheats Support Artwork',
-          caption: 'Artwork accompanying load and delivery support.',
-        },
-      ],
-    }),
-    urlEntry({
-      path: '/privacy',
-      priority: '0.4',
-      changefreq: 'yearly',
-      images: [
-        {
-          src: OG_DEFAULT,
-          title: 'Apex Legends Cheats Privacy Policy',
-          caption: 'Privacy policy for apexlegendscheats.org orders and support.',
-        },
-      ],
-    }),
-    urlEntry({
-      path: '/terms',
-      priority: '0.4',
-      changefreq: 'yearly',
-      images: [
-        {
-          src: OG_DEFAULT,
-          title: 'Apex Legends Cheats Terms of Use',
-          caption: 'License terms and risk disclaimer for Apex Legends Cheats.',
-        },
-      ],
-    }),
-    urlEntry({
-      path: '/refunds',
-      priority: '0.45',
-      changefreq: 'yearly',
-      images: [
-        {
-          src: OG_DEFAULT,
-          title: 'Apex Legends Cheats Refund Policy',
-          caption: 'Refund rules for digital Apex Legends Cheats licenses.',
-        },
-      ],
-    }),
   ]
+  return wrapUrlset(entries)
+}
 
+function buildImagesSitemap() {
+  const entries = ALL_SITE_IMAGES.map((src) => {
+    const path = IMAGE_PAGE_FOR[src]
+    const meta = IMAGE_META[src]
+    return urlEntry({
+      path,
+      priority: path === '/' ? '0.6' : '0.5',
+      changefreq: 'monthly',
+      images: [{ src, ...meta }],
+    })
+  })
+  return wrapUrlset(entries)
+}
+
+function buildSitemapIndex() {
+  const blocks = CHILD_SITEMAPS.map(
+    (name) => `  <sitemap>
+    <loc>${escapeXml(siteUrl(`/${name}`))}</loc>
+    <lastmod>${TODAY}</lastmod>
+  </sitemap>`,
+  )
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${entries.join('\n')}
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${blocks.join('\n')}
+</sitemapindex>
 `
 }
 
-function validate(games, forums, staticRoutes, sitemap) {
+function parsePageLocs(xml) {
+  return [...xml.matchAll(/<url>\s*<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
+}
+
+function parseImageLocs(xml) {
+  return [...xml.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((m) => m[1])
+}
+
+function validate(games, forums, staticRoutes, files) {
   const errors = []
   if (forums.some((forum) => ['instructions', 'how-to-load'].includes(forum.slug))) {
     errors.push('Retired forum slug remains indexed')
@@ -286,9 +310,6 @@ function validate(games, forums, staticRoutes, sitemap) {
   for (const game of games) {
     const page = join(pagesDir, `${game.slug}-cheats.astro`)
     if (!existsSync(page)) errors.push(`Product route has no page file: /${game.slug}-cheats`)
-  }
-  if (forums.length && !existsSync(join(pagesDir, 'forums', '[slug].astro'))) {
-    errors.push('Forum routes have no dynamic page file: src/pages/forums/[slug].astro')
   }
 
   for (const image of ALL_SITE_IMAGES) {
@@ -303,44 +324,62 @@ function validate(games, forums, staticRoutes, sitemap) {
   ])
   const expectedUrls = new Set([...expectedRoutes].map(siteUrl))
 
-  // Page <loc> only — image:loc also uses <loc> nesting under image:image
-  const pageLocs = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
-  const imageLocs = [...sitemap.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((match) => match[1])
-  const urlBlocks = sitemap.match(/<url>[\s\S]*?<\/url>/g) || []
-
-  for (const url of expectedUrls) {
-    if (!pageLocs.includes(url)) errors.push(`Missing URL: ${url}`)
+  const index = files['sitemap.xml']
+  if (!index.includes('<sitemapindex')) {
+    errors.push('sitemap.xml must be a sitemap index')
   }
-  for (const url of pageLocs) {
-    if (!expectedUrls.has(url)) errors.push(`Unexpected URL: ${url}`)
-  }
-  if (new Set(pageLocs).size !== pageLocs.length) {
-    errors.push('sitemap.xml contains duplicate page URLs')
-  }
-  if (sitemap.includes('<sitemapindex')) errors.push('sitemap.xml must be a single urlset, not an index')
-  if (urlBlocks.length !== expectedUrls.size) {
-    errors.push(`Expected ${expectedUrls.size} <url> entries, found ${urlBlocks.length}`)
-  }
-
-  for (const block of urlBlocks) {
-    const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] || '(unknown)'
-    if (!block.includes('<image:image>')) {
-      errors.push(`URL missing image entry: ${loc}`)
+  for (const name of CHILD_SITEMAPS) {
+    if (!index.includes(siteUrl(`/${name}`))) {
+      errors.push(`sitemap index missing child ${name}`)
     }
-    if (!block.includes('<image:loc>')) {
-      errors.push(`URL missing image:loc: ${loc}`)
+    if (files[name].includes('<sitemapindex')) {
+      errors.push(`${name} must be a urlset, not an index`)
+    }
+    if (files[name].includes('xml-stylesheet')) {
+      errors.push(`${name} must not embed xml-stylesheet`)
+    }
+  }
+
+  const imageLocs = CHILD_SITEMAPS.flatMap((name) => parseImageLocs(files[name]))
+  const contentLocs = CHILD_SITEMAPS.filter((n) => n !== 'sitemap-images.xml').flatMap((n) =>
+    parsePageLocs(files[n]),
+  )
+  const uniqueContent = new Set(contentLocs)
+
+  if (uniqueContent.size !== expectedUrls.size) {
+    errors.push(
+      `Expected ${expectedUrls.size} unique page URLs across pages/products/forums sitemaps, found ${uniqueContent.size}`,
+    )
+  }
+  for (const url of expectedUrls) {
+    if (!uniqueContent.has(url)) errors.push(`Page URL missing from content sitemaps: ${url}`)
+  }
+
+  const dupCheck = new Set()
+  for (const loc of contentLocs) {
+    if (dupCheck.has(loc)) errors.push(`Duplicate page URL across content sitemaps: ${loc}`)
+    dupCheck.add(loc)
+  }
+
+  for (const loc of contentLocs) {
+    if (!expectedUrls.has(loc)) errors.push(`Unexpected page URL in content sitemaps: ${loc}`)
+  }
+
+  for (const name of CHILD_SITEMAPS) {
+    const blocks = files[name].match(/<url>[\s\S]*?<\/url>/g) || []
+    for (const block of blocks) {
+      const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] || '(unknown)'
+      if (!block.includes('<image:image>') || !block.includes('<image:loc>')) {
+        errors.push(`${name}: URL missing image entry: ${loc}`)
+      }
     }
   }
 
   for (const image of ALL_SITE_IMAGES) {
     const absolute = siteUrl(image)
     if (!imageLocs.includes(absolute)) {
-      errors.push(`Sitemap missing required image: ${image}`)
+      errors.push(`Sitemaps missing required image: ${image}`)
     }
-  }
-
-  if (imageLocs.length < expectedUrls.size) {
-    errors.push('Image count is lower than page count — every URL needs an image')
   }
 
   if (errors.length) throw new Error(`Sitemap validation failed:\n- ${errors.join('\n- ')}`)
@@ -350,39 +389,50 @@ function main() {
   const games = loadGames()
   const forums = loadForums()
   const staticRoutes = loadStaticRoutes()
-  const sitemap = buildSitemap(games, forums)
-  validate(games, forums, staticRoutes, sitemap)
 
-  writeFileSync(join(publicDir, 'sitemap.xml'), sitemap, 'utf8')
-  writeFileSync(
-    join(publicDir, 'robots.txt'),
-    [
-      'User-agent: Googlebot',
-      'Allow: /',
-      'Allow: /sitemap.xml',
-      'Allow: /robots.txt',
-      '',
-      'User-agent: Google-InspectionTool',
-      'Allow: /',
-      'Allow: /sitemap.xml',
-      'Allow: /robots.txt',
-      '',
-      'User-agent: *',
-      'Allow: /',
-      'Allow: /sitemap.xml',
-      'Allow: /robots.txt',
-      '',
-      `Sitemap: ${siteUrl('/sitemap.xml')}`,
-      '',
-    ].join('\n'),
-    'utf8',
-  )
+  const files = {
+    'sitemap-pages.xml': buildPagesSitemap(),
+    'sitemap-products.xml': buildProductsSitemap(games),
+    'sitemap-forums.xml': buildForumsSitemap(forums),
+    'sitemap-images.xml': buildImagesSitemap(),
+    'sitemap.xml': buildSitemapIndex(),
+  }
+
+  validate(games, forums, staticRoutes, files)
+
+  for (const [name, xml] of Object.entries(files)) {
+    writeFileSync(join(publicDir, name), xml, 'utf8')
+  }
+
+  const sitemapLines = [
+    'User-agent: Googlebot',
+    'Allow: /',
+    ...CHILD_SITEMAPS.map((n) => `Allow: /${n}`),
+    'Allow: /sitemap.xml',
+    'Allow: /robots.txt',
+    '',
+    'User-agent: Google-InspectionTool',
+    'Allow: /',
+    ...CHILD_SITEMAPS.map((n) => `Allow: /${n}`),
+    'Allow: /sitemap.xml',
+    'Allow: /robots.txt',
+    '',
+    'User-agent: *',
+    'Allow: /',
+    ...CHILD_SITEMAPS.map((n) => `Allow: /${n}`),
+    'Allow: /sitemap.xml',
+    'Allow: /robots.txt',
+    '',
+    `Sitemap: ${siteUrl('/sitemap-pages.xml')}`,
+    `Sitemap: ${siteUrl('/sitemap-products.xml')}`,
+    `Sitemap: ${siteUrl('/sitemap-forums.xml')}`,
+    `Sitemap: ${siteUrl('/sitemap-images.xml')}`,
+    '',
+  ]
+
+  writeFileSync(join(publicDir, 'robots.txt'), sitemapLines.join('\n'), 'utf8')
 
   const stale = [
-    'sitemap-pages.xml',
-    'sitemap-products.xml',
-    'sitemap-forums.xml',
-    'sitemap-images.xml',
     'sitemap-blogs.xml',
     'sitemap-regions.xml',
     'sitemap-index.xml',
@@ -395,11 +445,22 @@ function main() {
     }
   }
 
-  const urlCount = (sitemap.match(/<url>/g) || []).length
-  const imageCount = (sitemap.match(/<image:image>/g) || []).length
-  console.log(
-    `Sitemap OK: ${urlCount} URLs, ${imageCount} images in ${siteUrl('/sitemap.xml')}`,
+  const urlCount = CHILD_SITEMAPS.reduce(
+    (n, name) => n + (files[name].match(/<url>/g) || []).length,
+    0,
   )
+  console.log(
+    `Sitemap OK: index + ${CHILD_SITEMAPS.length} children, ${urlCount} total <url> rows (${expectedUrlCount(games, forums, staticRoutes)} indexable pages)`,
+  )
+}
+
+function expectedUrlCount(games, forums, staticRoutes) {
+  const routes = new Set([
+    ...staticRoutes,
+    ...games.map((game) => `/${game.slug}-cheats`),
+    ...forums.map((forum) => `/forums/${forum.slug}`),
+  ])
+  return routes.size
 }
 
 main()

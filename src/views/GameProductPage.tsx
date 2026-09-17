@@ -116,11 +116,11 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
                 Apex Legends Cheat Features, Price & Checkout
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/55 sm:mt-4 sm:text-base">
-                Compare player ESP, loot ESP, soft aim, 2D radar and stream-proof options.
-                Confirm current status, then continue to checkout.
+                Features, price from ${PRODUCT_PRICE_USD}, ESP, 2D radar and optional soft aim for
+                PC. Compare loot filters and stream-proof options, confirm status, then checkout.
               </p>
               <CheckoutLink className="cta-gradient mt-5 inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90">
-                Buy Apex Legends Cheats
+                Checkout now
               </CheckoutLink>
             </div>
 
@@ -196,7 +196,7 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
                         href={blogPath('complete-setup')}
                         className="text-white/80 underline-offset-2 hover:underline"
                       >
-                        complete setup and load order
+                        setup load order
                       </a>{' '}
                       after delivery.
                     </li>
@@ -219,7 +219,7 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
                       rel="noopener noreferrer"
                       className="text-white/80 underline-offset-2 hover:underline"
                     >
-                      official Apex Legends website
+                      EA.com
                     </a>{' '}
                     or{' '}
                     <a
@@ -228,23 +228,23 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
                       rel="noopener noreferrer"
                       className="text-white/80 underline-offset-2 hover:underline"
                     >
-                      Apex Legends on Steam
+                      Steam
                     </a>
-                    . For hacks, stay on {SITE_HOST}:{' '}
+                    . For cheats on {SITE_HOST}:{' '}
                     <a href="/reviews" className="text-white/80 underline-offset-2 hover:underline">
-                      reviews
+                      buyer reviews
                     </a>
                     ,{' '}
                     <a href="/support" className="text-white/80 underline-offset-2 hover:underline">
-                      support
+                      loader help
                     </a>
                     ,{' '}
                     <a href="/refunds" className="text-white/80 underline-offset-2 hover:underline">
-                      refunds
+                      refund policy
                     </a>
                     , and{' '}
                     <a href="/forums" className="text-white/80 underline-offset-2 hover:underline">
-                      forums
+                      setup forums
                     </a>
                     .
                   </p>

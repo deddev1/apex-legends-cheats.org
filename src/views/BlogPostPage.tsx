@@ -87,11 +87,11 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                 Check live Undetected status, then buy ESP, wallhack, and spoofer for
                 Apex Legends on {SITE_HOST}. Need help? Read{' '}
                 <a href="/support" className="text-white/80 underline-offset-2 hover:underline">
-                  Apex Legends Cheats support
+                  loader help
                 </a>
                 {' '}or{' '}
                 <a href="/reviews" className="text-white/80 underline-offset-2 hover:underline">
-                  player reviews
+                  buyer reviews
                 </a>
                 . Own the game via{' '}
                 <a
@@ -112,13 +112,13 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                   Open product
                 </a>
                 <a
-                  href="/support"
+                  href="/faq"
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white hover:bg-white/5"
                 >
-                  Support
+                  FAQ
                 </a>
                 <CheckoutLink className="cta-gradient inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium text-white">
-                  Buy Apex Legends Cheats
+                  Checkout
                 </CheckoutLink>
               </div>
             </div>
@@ -153,10 +153,11 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                     <p className="mt-2 flex-1 text-xs leading-relaxed text-white/50">
                       {b.excerpt}
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-white/70">
-                      Read
-                      <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.75} />
-                    </span>
+                    <ArrowRight
+                      className="mt-4 h-3.5 w-3.5 text-white/60"
+                      strokeWidth={1.75}
+                      aria-hidden
+                    />
                   </a>
                 ))}
               </div>
