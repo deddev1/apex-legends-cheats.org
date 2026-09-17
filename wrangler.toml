@@ -4,8 +4,8 @@ name = "apexlegendscheats-org"
 main = "workers/site.js"
 compatibility_date = "2026-09-12"
 
-# Cloudflare CI invokes `npx wrangler deploy` directly. Build Astro first so
-# the static-assets directory exists before Wrangler validates it.
+# Workers Builds must run `npm run deploy:cloudflare` (not bare `npx wrangler deploy`).
+# That script installs deps, runs `npm run build`, then uploads ./dist.
 [build]
 command = "npm run build"
 

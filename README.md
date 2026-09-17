@@ -19,16 +19,31 @@ Static Astro site for Apex Legends cheats — Cloudflare Pages ready.
 | `npm run check` | Astro + TypeScript diagnostics |
 | `npm run lint` | Oxlint |
 
-## Cloudflare Pages
+## Cloudflare Workers (static assets + `workers/site.js`)
 
-- **Build command:** `npm run build`
-- **Output directory:** `dist`
-- **Node version:** 22 (or latest LTS)
-- **Framework preset:** None / Astro (static)
+Workers Builds must **install dependencies and build Astro** before `wrangler deploy`.  
+If the deploy command is only `npx wrangler deploy`, the build fails with *“Could not detect a directory containing static files”* because `./dist` does not exist yet.
 
-Deploy artifacts include:
+In the Cloudflare dashboard (**Workers & Pages → your worker → Settings → Builds**), set:
 
-- `public/_headers` → cache + security headers (`/_astro/*` immutable)
-- `public/_redirects` → unknown paths serve `404.html` with status 404
+| Setting | Value |
+| --- | --- |
+| **Root directory** | `/` (repo root) |
+| **Node version** | 22 |
+| **Deploy command** | `npm run deploy:cloudflare` |
 
-No Cloudflare adapter is required for static Pages hosting.
+Or, if the UI has separate install/build/deploy fields:
+
+| Setting | Value |
+| --- | --- |
+| **Install command** | `npm ci` |
+| **Build command** | `npm run build` |
+| **Deploy command** | `npx wrangler deploy` |
+
+Local production deploy:
+
+```bash
+npm run deploy
+```
+
+`wrangler.toml` serves static files from `./dist` and custom domains `apexlegendscheats.org` / `www`.
