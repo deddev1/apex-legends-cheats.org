@@ -1,6 +1,6 @@
 # Apex Legends Cheats (apexlegendscheats.org)
 
-Static Astro site for Apex Legends (Apex Legends) cheats — Cloudflare Pages ready.
+Static Astro site for Apex Legends cheats — Cloudflare Pages ready.
 
 ## Stack
 
