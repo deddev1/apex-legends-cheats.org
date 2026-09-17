@@ -6,6 +6,11 @@ const dist = join(root, 'dist')
 const site = 'https://apexlegendscheats.org'
 const failures = []
 
+if (!existsSync(dist)) {
+  console.error('SEO verification failed: dist/ missing — run npm run build first')
+  process.exit(1)
+}
+
 function fail(message) {
   failures.push(message)
 }
@@ -22,6 +27,22 @@ function pageUrl(file) {
   if (page === 'index.html') return `${site}/`
   if (page.endsWith('/index.html')) return `${site}/${page.slice(0, -11)}`
   return `${site}/${page.slice(0, -5)}`
+}
+
+/** JSON-LD only — ignore `<meta name="keywords">` and other non-schema markup. */
+function jsonLdFromHtml(html) {
+  const chunks = []
+  const pattern = /<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi
+  for (const match of html.matchAll(pattern)) {
+    chunks.push(match[1])
+  }
+  return chunks.join('\n')
+}
+
+const keywordListInJsonLd = /"@type"\s*:\s*"KeywordList"/
+const metaKeywordsSample = '<meta name="keywords" content="apex legends cheats">'
+if (keywordListInJsonLd.test(metaKeywordsSample)) {
+  fail('verify-seo regression: meta keywords must not match KeywordList detector')
 }
 
 const files = htmlFiles(dist)
@@ -60,7 +81,7 @@ for (const file of files) {
   if (html.includes('assets-prd.ignimgs.com')) fail(`${page}: contains third-party IGN image`)
   if (html.includes('cdn.cosmocheats.com')) fail(`${page}: contains third-party media hotlink`)
   if (html.includes('SearchAction')) fail(`${page}: contains invalid SearchAction`)
-  if (/"@type"\s*:\s*"KeywordList"/.test(html)) {
+  if (keywordListInJsonLd.test(jsonLdFromHtml(html))) {
     fail(`${page}: contains KeywordList structured data`)
   }
   if (/forums\/(instructions|how-to-load)/.test(html)) {

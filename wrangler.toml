@@ -4,8 +4,8 @@ name = "apexlegendscheats-org"
 main = "workers/site.js"
 compatibility_date = "2026-09-12"
 
-# Workers Builds must run `npm run deploy:cloudflare` (not bare `npx wrangler deploy`).
-# That script installs deps, runs `npm run build`, then uploads ./dist.
+# Workers Builds: set deploy command to `npm run deploy:cloudflare`.
+# Wrangler runs `npm run build` once via [build] below (includes SEO verify).
 [build]
 command = "npm run build"
 

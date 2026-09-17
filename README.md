@@ -24,21 +24,28 @@ Static Astro site for Apex Legends cheats — Cloudflare Pages ready.
 Workers Builds must **install dependencies and build Astro** before `wrangler deploy`.  
 If the deploy command is only `npx wrangler deploy`, the build fails with *“Could not detect a directory containing static files”* because `./dist` does not exist yet.
 
-In the Cloudflare dashboard (**Workers & Pages → your worker → Settings → Builds**), set:
+In the Cloudflare dashboard (**Workers & Pages → your worker → Settings → Builds**), use **one** of these setups (not both):
+
+**Recommended (single build, fewer timeouts):**
 
 | Setting | Value |
 | --- | --- |
 | **Root directory** | `/` (repo root) |
 | **Node version** | 22 |
+| **Install command** | `npm ci` |
 | **Deploy command** | `npm run deploy:cloudflare` |
 
-Or, if the UI has separate install/build/deploy fields:
+Leave **Build command** empty. `wrangler.toml` `[build]` runs `npm run build` during `wrangler deploy`.
+
+**Alternative (explicit build step):**
 
 | Setting | Value |
 | --- | --- |
 | **Install command** | `npm ci` |
 | **Build command** | `npm run build` |
-| **Deploy command** | `npx wrangler deploy` |
+| **Deploy command** | `npx wrangler deploy --no-bundle` |
+
+If you set **Build command** and also keep `[build]` in `wrangler.toml`, the site builds **twice** (ffmpeg + Astro) and Workers Builds may fail with almost no log output.
 
 Local production deploy:
 
