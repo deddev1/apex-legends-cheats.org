@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css'
 import {
+  DEFAULT_META_KEYWORDS,
   OG_IMAGE,
   SITE_NAME,
   absoluteUrl,
@@ -28,6 +29,7 @@ const robots =
 const jsonLd = buildPageJsonLd(seo, jsonLdExtra)
 const isHome = seo.path === '/' || seo.path === ''
 const isHeroLcp = isHome || seo.path === '/forums'
+const metaKeywords = seo.keywords || DEFAULT_META_KEYWORDS
 ---
 
 <!doctype html>
@@ -65,6 +67,7 @@ const isHeroLcp = isHome || seo.path === '/forums'
 
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />
+    <meta name="keywords" content={metaKeywords} />
     <meta name="robots" content={robots} />
     <meta name="googlebot" content={robots} />
     <meta name="author" content={SITE_NAME} />

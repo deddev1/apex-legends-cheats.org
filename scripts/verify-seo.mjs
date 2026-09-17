@@ -80,6 +80,9 @@ const importantPages = [
   readFileSync(join(dist, 'forums', 'index.html'), 'utf8'),
 ]
 
+if (!home.includes('name="keywords"') || !home.includes('apex legends cheats')) {
+  fail('Homepage must include meta keywords with apex legends cheats')
+}
 if (!home.includes('<title>Apex Legends Cheats | ESP, Aimbot &amp; Radar for PC</title>')) {
   fail('Homepage does not own the exact transactional title')
 }
