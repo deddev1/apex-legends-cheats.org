@@ -3,8 +3,8 @@
  * Primary redirects live in workers/site.js for `npx wrangler deploy`.
  * /sitemap.xml is excluded in public/_routes.json so crawlers get a static file.
  */
-const CANONICAL_HOST = 'wardogshacks.net'
-const LEGACY_HOSTS = new Set(['www.wardogshacks.net'])
+const CANONICAL_HOST = 'apexlegendscheats.org'
+const LEGACY_HOSTS = new Set(['www.apexlegendscheats.org'])
 
 export async function onRequest(context) {
   const url = new URL(context.request.url)

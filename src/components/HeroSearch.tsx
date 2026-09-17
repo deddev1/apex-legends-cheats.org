@@ -18,7 +18,7 @@ export function HeroSearch({
   value,
   onChange,
   submitTo = 'forums',
-  placeholder = 'Search WARDOGS Hacks…',
+  placeholder = 'Search Apex Legends Cheats…',
   autoFocus = false,
   className = '',
 }: HeroSearchProps) {
@@ -42,10 +42,10 @@ export function HeroSearch({
     const term = q.trim().toLowerCase()
     if (!term) return []
     const cheatAliases = [
-      'wardogs hacks',
-      'the wardogs hacks',
-      'wardogs hacks',
-      'wardogshacks',
+      'apex legends cheats',
+      'apex legends cheats for pc',
+      'apex legends cheats',
+      'apexlegendscheats',
       'cheats',
     ]
     if (cheatAliases.some((a) => a.includes(term) || term.includes(a))) {

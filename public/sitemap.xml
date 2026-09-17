@@ -3,205 +3,215 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://wardogshacks.net/</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://apexlegendscheats.org/</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-soldier-hero.jpg</image:loc>
-      <image:title>WARDOGS Hacks Hero</image:title>
-      <image:caption>Tactical soldier hero for WARDOGS Hacks on PC.</image:caption>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-soldier-hero.jpg</image:loc>
+      <image:title>Apex Legends Cheats gameplay screenshot</image:title>
+      <image:caption>In-game ESP and radar preview for Apex Legends Cheats on PC.</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-tactical-fps.jpg</image:loc>
-      <image:title>WARDOGS Hacks Tactical Artwork</image:title>
-      <image:caption>Homepage artwork for WARDOGS ESP, radar and soft aim.</image:caption>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-product-cover.webp</image:loc>
+      <image:title>Apex Legends Cheats product gameplay</image:title>
+      <image:caption>Gameplay screenshot from the Apex Legends Cheats loader.</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://wardogshacks.net/og/wardogs-hacks.jpg</image:loc>
-      <image:title>WARDOGS Hacks Social Preview</image:title>
-      <image:caption>Default Open Graph image for WARDOGS Hacks.</image:caption>
+      <image:loc>https://apexlegendscheats.org/media/apex-hero-poster.jpg</image:loc>
+      <image:title>Apex Legends Cheats hero video poster</image:title>
+      <image:caption>Poster frame for the homepage hero gameplay clip.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/og/apex-legends-cheats.jpg</image:loc>
+      <image:title>Apex Legends Cheats Social Preview</image:title>
+      <image:caption>Open Graph image for apexlegendscheats.org.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/wardogs-hacks</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://apexlegendscheats.org/apex-legends-cheats</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/wardogs-hacks" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/wardogs-hacks" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/apex-legends-cheats" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/apex-legends-cheats" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-control-zone.jpg</image:loc>
-      <image:title>WARDOGS ESP Product Artwork</image:title>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-product-hero.webp</image:loc>
+      <image:title>Apex Legends Cheats gameplay preview</image:title>
+      <image:caption>In-match ESP and radar screenshot on the product page.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-product-cover.webp</image:loc>
+      <image:title>Apex Legends Cheats buy card gameplay</image:title>
+      <image:caption>Gameplay screenshot on the Apex Legends Cheats product card.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-ranked-squad.jpg</image:loc>
+      <image:title>Apex Legends ESP ranked gameplay</image:title>
       <image:caption>Product features, compatibility, status and price before checkout.</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-product-hero.webp</image:loc>
-      <image:title>WARDOGS Product Hero</image:title>
-      <image:caption>Hero artwork for WARDOGS product details and checkout.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-product-cover.webp</image:loc>
-      <image:title>WARDOGS Product Cover</image:title>
-      <image:caption>Cover artwork for WARDOGS listing and social previews.</image:caption>
+      <image:loc>https://apexlegendscheats.org/og/apex-legends-cheats.jpg</image:loc>
+      <image:title>Apex Legends Cheats share image</image:title>
+      <image:caption>Social preview for Apex Legends Cheats product listing.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/forums</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://apexlegendscheats.org/forums</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/forums" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/forums" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/forums" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/forums" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-control-zone.jpg</image:loc>
-      <image:title>WARDOGS Hacks Forum Artwork</image:title>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-ranked-squad.jpg</image:loc>
+      <image:title>Apex Legends Cheats Forum Artwork</image:title>
       <image:caption>Artwork reference for setup and feature threads.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/forums/features-list</loc>
+    <loc>https://apexlegendscheats.org/forums/features-list</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/forums/features-list" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/forums/features-list" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/forums/features-list" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/forums/features-list" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-control-zone.jpg</image:loc>
-      <image:title>WARDOGS Hacks Features List Artwork</image:title>
-      <image:caption>Visible WARDOGS reference for WARDOGS Hacks Features List.</image:caption>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-ranked-squad.jpg</image:loc>
+      <image:title>Apex Legends Cheats Features List Artwork</image:title>
+      <image:caption>Visible Apex Legends reference for Apex Legends Cheats Features List.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/forums/hotkeys</loc>
+    <loc>https://apexlegendscheats.org/forums/hotkeys</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/forums/hotkeys" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/forums/hotkeys" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/forums/hotkeys" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/forums/hotkeys" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-soldier-hero.jpg</image:loc>
-      <image:title>WARDOGS Hacks Hotkeys Artwork</image:title>
-      <image:caption>Visible WARDOGS reference for WARDOGS Hacks Hotkeys.</image:caption>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-soldier-hero.jpg</image:loc>
+      <image:title>Apex Legends Cheats Hotkeys Artwork</image:title>
+      <image:caption>Visible Apex Legends reference for Apex Legends Cheats Hotkeys.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/forums/complete-setup</loc>
+    <loc>https://apexlegendscheats.org/forums/complete-setup</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/forums/complete-setup" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/forums/complete-setup" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/forums/complete-setup" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/forums/complete-setup" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-control-zone.jpg</image:loc>
-      <image:title>How to Complete WARDOGS Hacks Setup Artwork</image:title>
-      <image:caption>Visible WARDOGS reference for How to Complete WARDOGS Hacks Setup.</image:caption>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-ranked-squad.jpg</image:loc>
+      <image:title>How to Complete Apex Legends Cheats Setup Artwork</image:title>
+      <image:caption>Visible Apex Legends reference for How to Complete Apex Legends Cheats Setup.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/forums/disable-antivirus</loc>
+    <loc>https://apexlegendscheats.org/forums/disable-antivirus</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/forums/disable-antivirus" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/forums/disable-antivirus" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/forums/disable-antivirus" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/forums/disable-antivirus" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-tactical-fps.jpg</image:loc>
-      <image:title>How to Turn Off Antivirus for WARDOGS Hacks Artwork</image:title>
-      <image:caption>Visible WARDOGS reference for How to Turn Off Antivirus for WARDOGS Hacks.</image:caption>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-battle-royale.jpg</image:loc>
+      <image:title>How to Turn Off Antivirus for Apex Legends Cheats Artwork</image:title>
+      <image:caption>Visible Apex Legends reference for How to Turn Off Antivirus for Apex Legends Cheats.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/forums/undetected-status</loc>
+    <loc>https://apexlegendscheats.org/forums/undetected-status</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/forums/undetected-status" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/forums/undetected-status" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/forums/undetected-status" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/forums/undetected-status" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-control-zone.jpg</image:loc>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-ranked-squad.jpg</image:loc>
       <image:title>Check Undetected Before You Buy or Load Artwork</image:title>
-      <image:caption>Visible WARDOGS reference for Check Undetected Before You Buy or Load.</image:caption>
+      <image:caption>Visible Apex Legends reference for Check Undetected Before You Buy or Load.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/reviews</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://apexlegendscheats.org/reviews</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/reviews" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/reviews" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/reviews" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/reviews" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-tactical-fps.jpg</image:loc>
-      <image:title>WARDOGS Hacks Review Artwork</image:title>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-battle-royale.jpg</image:loc>
+      <image:title>Apex Legends Cheats Review Artwork</image:title>
       <image:caption>Artwork accompanying verified buyer reviews.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/faq</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://apexlegendscheats.org/faq</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/faq" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/faq" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-control-zone.jpg</image:loc>
-      <image:title>WARDOGS Hacks FAQ Artwork</image:title>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-ranked-squad.jpg</image:loc>
+      <image:title>Apex Legends Cheats FAQ Artwork</image:title>
       <image:caption>Product artwork accompanying pre-purchase answers.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/support</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://apexlegendscheats.org/support</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/support" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/support" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/support" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/support" />
     <image:image>
-      <image:loc>https://wardogshacks.net/media/wardogs-tactical-fps.jpg</image:loc>
-      <image:title>WARDOGS Hacks Support Artwork</image:title>
+      <image:loc>https://apexlegendscheats.org/media/apex-legends-battle-royale.jpg</image:loc>
+      <image:title>Apex Legends Cheats Support Artwork</image:title>
       <image:caption>Artwork accompanying load and delivery support.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/privacy</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://apexlegendscheats.org/privacy</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/privacy" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/privacy" />
     <image:image>
-      <image:loc>https://wardogshacks.net/og/wardogs-hacks.jpg</image:loc>
-      <image:title>WARDOGS Hacks Privacy Policy</image:title>
-      <image:caption>Privacy policy for wardogshacks.net orders and support.</image:caption>
+      <image:loc>https://apexlegendscheats.org/og/apex-legends-cheats.jpg</image:loc>
+      <image:title>Apex Legends Cheats Privacy Policy</image:title>
+      <image:caption>Privacy policy for apexlegendscheats.org orders and support.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/terms</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://apexlegendscheats.org/terms</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/terms" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/terms" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/terms" />
     <image:image>
-      <image:loc>https://wardogshacks.net/og/wardogs-hacks.jpg</image:loc>
-      <image:title>WARDOGS Hacks Terms of Use</image:title>
-      <image:caption>License terms and risk disclaimer for WARDOGS Hacks.</image:caption>
+      <image:loc>https://apexlegendscheats.org/og/apex-legends-cheats.jpg</image:loc>
+      <image:title>Apex Legends Cheats Terms of Use</image:title>
+      <image:caption>License terms and risk disclaimer for Apex Legends Cheats.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://wardogshacks.net/refunds</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://apexlegendscheats.org/refunds</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.45</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wardogshacks.net/refunds" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wardogshacks.net/refunds" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://apexlegendscheats.org/refunds" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apexlegendscheats.org/refunds" />
     <image:image>
-      <image:loc>https://wardogshacks.net/og/wardogs-hacks.jpg</image:loc>
-      <image:title>WARDOGS Hacks Refund Policy</image:title>
-      <image:caption>Refund rules for digital WARDOGS Hacks licenses.</image:caption>
+      <image:loc>https://apexlegendscheats.org/og/apex-legends-cheats.jpg</image:loc>
+      <image:title>Apex Legends Cheats Refund Policy</image:title>
+      <image:caption>Refund rules for digital Apex Legends Cheats licenses.</image:caption>
     </image:image>
   </url>
 </urlset>

@@ -30,17 +30,20 @@ export function SeoMedia({
         />
         {hasVideo ? (
           <video
-            controls
             muted
             autoPlay
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             poster={media.image}
             aria-label={media.videoTitle || media.title}
             className="aspect-video h-full w-full bg-black object-cover"
           >
             <source src={media.video} type="video/mp4" />
+            <source
+              src={media.video.replace(/\.mp4$/, '.webm')}
+              type="video/webm"
+            />
           </video>
         ) : null}
       </div>

@@ -152,6 +152,43 @@ body {
   opacity: 0.55;
 }
 
+/* Homepage: darker footage + violet scrim so hero copy stays readable */
+.hero-video--readable .hero-video-bg {
+  filter: saturate(0.75) contrast(1.05) brightness(0.56);
+}
+
+.hero-video--readable .hero-video-tint {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 6, 15, 0.62) 0%,
+      rgba(42, 21, 72, 0.46) 40%,
+      rgba(76, 29, 149, 0.28) 65%,
+      rgba(8, 6, 15, 0.76) 100%
+    ),
+    radial-gradient(ellipse 100% 80% at 30% 15%, rgba(167, 139, 250, 0.18), transparent 58%);
+  mix-blend-mode: normal;
+  opacity: 0.94;
+}
+
+.hero-video--readable .hero-video-tint-glow {
+  background:
+    radial-gradient(ellipse 70% 55% at 75% 25%, rgba(176, 64, 251, 0.22), transparent 52%),
+    radial-gradient(ellipse 55% 40% at 10% 70%, rgba(124, 58, 237, 0.16), transparent 48%);
+  mix-blend-mode: soft-light;
+  opacity: 0.56;
+}
+
+.hero-video--readable .hero-video-edge-top {
+  height: 6.5rem;
+  background: linear-gradient(180deg, rgba(8, 6, 15, 0.86) 0%, rgba(8, 6, 15, 0.38) 55%, transparent 100%);
+}
+
+.hero-video--readable .hero-video-edge-bottom {
+  height: 10.5rem;
+  background: linear-gradient(0deg, rgba(8, 6, 15, 0.88) 0%, rgba(8, 6, 15, 0.44) 50%, transparent 100%);
+}
+
 .hero-video-bg::-webkit-media-controls,
 .hero-video-bg::-webkit-media-controls-enclosure,
 .hero-video-bg::-webkit-media-controls-panel,

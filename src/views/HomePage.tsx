@@ -9,18 +9,18 @@ import { CheckoutLink } from '../components/CheckoutLink'
 import { HOME_FAQS } from '../data/faqs'
 import { HOME_HEADINGS, SITE_HOST, SITE_NAME, SITE_PURPOSE } from '../data/site'
 import { BLOGS, blogPath } from '../data/blogs'
-import { WARDOGS_HOME_VIDEO } from '../data/media'
+import { APEX_HOME_VIDEO } from '../data/media'
 
 const FEATURES = [
   {
     icon: Eye,
     label: 'Player ESP / Wallhack',
-    desc: 'Boxes, skeletons, health and distance through terrain and buildings on the Control Zone map.',
+    desc: 'Boxes, skeletons, health and distance through terrain and buildings across battle royale maps.',
   },
   {
     icon: Radar,
     label: '2D radar overlay',
-    desc: 'Track off-screen threats and vehicles before they swing onto your flank.',
+    desc: 'Track off-screen threats and nearby squads before they third-party your fight.',
   },
   {
     icon: Crosshair,
@@ -30,7 +30,7 @@ const FEATURES = [
   {
     icon: Sparkles,
     label: 'EAC rebuild status',
-    desc: 'We mark Undetected or Updating after WARDOGS and Easy Anti-Cheat patches.',
+    desc: 'We mark Undetected or Updating after Apex Legends and Easy Anti-Cheat patches.',
   },
 ] as const
 
@@ -38,10 +38,7 @@ export function HomePage() {
   return (
     <div className="min-h-screen overflow-x-hidden text-white">
       <section id="home" className="relative flex min-h-screen flex-col overflow-x-clip">
-        <VideoBg
-          image="/media/wardogs-soldier-hero.jpg"
-          imageAlt="Tactical soldier aiming across a purple-lit mountainous battlefield"
-        />
+        <VideoBg readable />
 
         <div className="relative z-20 flex min-h-screen flex-col">
           <Navbar onVideo />
@@ -50,18 +47,18 @@ export function HomePage() {
             <div className="flex flex-col gap-6 sm:gap-8 lg:flex-row lg:items-end lg:justify-between">
               <div className="relative z-30 max-w-xl">
                 <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-z-soft/80">
-                  WARDOGS · Undetected · {SITE_HOST}
+                  Apex Legends · Undetected · {SITE_HOST}
                 </p>
                 <h1 className="text-3xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
                   {HOME_HEADINGS.h1}
                 </h1>
                 <p className="mt-5 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
-                  WARDOGS hacks for Windows PC with player ESP, soft aim, 2D radar and live
-                  loader status for BULKHEAD’s 100-player Early Access FPS.
+                  Apex Legends cheats for Windows PC with player ESP, soft aim, 2D radar and live
+                  loader status for current Steam and EA app builds.
                 </p>
 
                 <div className="relative z-50 mt-7">
-                  <HeroSearch placeholder="Search WARDOGS Hacks…" />
+                  <HeroSearch placeholder="Search Apex Legends Cheats…" />
                 </div>
               </div>
 
@@ -74,7 +71,7 @@ export function HomePage() {
                     UD
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-white/70 sm:mt-4">
-                    Live undetected status for WARDOGS. Updated after EAC patches — not random
+                    Live undetected status for Apex Legends. Updated after EAC patches — not random
                     Discord screenshots.
                   </p>
                 </div>
@@ -82,13 +79,13 @@ export function HomePage() {
                 <div className="glass flex h-full min-h-[168px] flex-col rounded-2xl p-5 sm:min-h-[200px] sm:p-6">
                   <div className="mb-3 flex items-center gap-2 sm:mb-4">
                     <div className="flex h-6 w-6 items-center justify-center rounded bg-z-accent/30 text-xs font-bold text-z-soft">
-                      WD
+                      AL
                     </div>
-                    <span className="text-sm font-semibold text-white">WARDOGS</span>
+                    <span className="text-sm font-semibold text-white">Apex Legends</span>
                   </div>
                   <p className="flex-1 text-sm leading-relaxed text-white/80">
                     “Bought it for ESP and leave aim off. Seeing a rotation before a third-party
-                    changes everything on Control Zone.”
+                    changes everything in ranked.”
                   </p>
                   <div className="mt-4 flex items-center gap-3 sm:mt-5">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-z-accent/25 text-sm font-semibold text-z-ink">
@@ -96,7 +93,7 @@ export function HomePage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-white">jayk</p>
-                      <p className="text-xs text-white/60">WARDOGS player</p>
+                      <p className="text-xs text-white/60">Apex Legends player</p>
                     </div>
                   </div>
                 </div>
@@ -112,14 +109,14 @@ export function HomePage() {
         <section className="page-x py-12">
           <div className="mx-auto max-w-6xl">
             <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
-              WARDOGS Hacks preview
+              Apex Legends Cheats preview
             </h2>
             <div className="overflow-hidden rounded-2xl border border-z-soft/20 bg-black shadow-glow">
               <div className="relative aspect-video w-full">
                 <iframe
                   className="absolute inset-0 h-full w-full"
-                  src={`https://www.youtube-nocookie.com/embed/${WARDOGS_HOME_VIDEO.id}?rel=0`}
-                  title={WARDOGS_HOME_VIDEO.title}
+                  src={`https://www.youtube-nocookie.com/embed/${APEX_HOME_VIDEO.id}?rel=0`}
+                  title={APEX_HOME_VIDEO.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
@@ -127,7 +124,7 @@ export function HomePage() {
                 />
               </div>
             </div>
-            <p className="mt-3 text-sm text-white/45">{WARDOGS_HOME_VIDEO.caption}</p>
+            <p className="mt-3 text-sm text-white/45">{APEX_HOME_VIDEO.caption}</p>
           </div>
         </section>
 
@@ -161,7 +158,7 @@ export function HomePage() {
                   Forums
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                  WARDOGS Hacks forums
+                  Apex Legends Cheats forums
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
                   Setup, antivirus, hotkeys, features, and load steps before you buy.
@@ -203,13 +200,13 @@ export function HomePage() {
 
             <div className="page-card mt-8 flex flex-col gap-4 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
               <div>
-                <h3 className="text-lg font-semibold text-white">WARDOGS Hacks product</h3>
+                <h3 className="text-lg font-semibold text-white">Apex Legends Cheats product</h3>
                 <p className="mt-1 text-sm text-white/55">
                   Detailed features · compatibility · price · checkout
                 </p>
               </div>
               <a
-                href={guidePath('wardogs')}
+                href={guidePath('apex-legends')}
                 className="cta-gradient inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white"
               >
                 View product details
@@ -232,10 +229,10 @@ export function HomePage() {
                   {SITE_PURPOSE} Clear features, honest Undetected status, buyer guides for
                   setup and load. Own the game on Steam, then check{' '}
                   <a
-                    href="/wardogs-hacks"
+                    href="/apex-legends-cheats"
                     className="text-white/80 underline-offset-2 hover:underline"
                   >
-                    WARDOGS feature list
+                    Apex Legends feature list
                   </a>
                   ,{' '}
                   <a
@@ -255,7 +252,7 @@ export function HomePage() {
                 </p>
               </div>
               <a
-                href={guidePath('wardogs')}
+                href={guidePath('apex-legends')}
                 className="mt-8 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-white hover:text-white/80"
               >
                 Open product page
@@ -275,12 +272,12 @@ export function HomePage() {
                   {HOME_HEADINGS.h2Access}
                 </h2>
                 <p className="mt-4 text-sm leading-relaxed text-white/55 sm:text-base">
-                  Confirm WARDOGS Hacks status is Undetected, then checkout for digital delivery
-                  on supported Windows Early Access builds.
+                  Confirm Apex Legends Cheats status is Undetected, then checkout for digital delivery
+                  on supported Windows builds from Steam and the EA app.
                 </p>
               </div>
               <CheckoutLink className="cta-gradient mt-8 inline-flex w-full items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:w-fit">
-                Buy WARDOGS Hacks
+                Buy Apex Legends Cheats
               </CheckoutLink>
             </div>
           </div>

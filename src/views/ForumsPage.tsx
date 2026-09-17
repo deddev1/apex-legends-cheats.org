@@ -42,10 +42,10 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
                 Forums · Setup · {SITE_HOST}
               </p>
               <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                WARDOGS Hacks Forums
+                Apex Legends Cheats Forums
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-                Setup threads for WARDOGS Hacks — features, hotkeys, complete setup,
+                Setup threads for Apex Legends Cheats — features, hotkeys, complete setup,
                 disable antivirus, how to load, and Undetected status before you checkout.
               </p>
               <div className="relative z-50 mt-7">
@@ -69,14 +69,14 @@ export function ForumsPage({ initialQuery = '' }: ForumsPageProps) {
             <div className="page-card mb-10 flex flex-col gap-4 rounded-2xl p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
               <div>
                 <p className="text-xs uppercase tracking-wider text-white/45">Product</p>
-                <h2 className="mt-1 text-xl font-semibold text-white">WARDOGS Hacks</h2>
+                <h2 className="mt-1 text-xl font-semibold text-white">Apex Legends Cheats</h2>
                 <p className="mt-2 max-w-xl text-sm text-white/55">
-                  Buy undetected ESP, wallhack & spoofer for WARDOGS — live status before
+                  Buy undetected ESP, wallhack & spoofer for Apex Legends — live status before
                   checkout.
                 </p>
               </div>
               <a
-                href={guidePath('wardogs')}
+                href={guidePath('apex-legends')}
                 className="cta-gradient inline-flex shrink-0 items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white"
               >
                 Open product

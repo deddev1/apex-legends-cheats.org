@@ -7,9 +7,9 @@ export type Game = {
   popular?: boolean
 }
 
-/** Site is WARDOGS Hacks only — no other titles in the catalog. */
+/** Site is Apex Legends Cheats only — no other titles in the catalog. */
 export const GAMES: Game[] = [
-  { slug: 'wardogs', name: 'WARDOGS', status: 'Updating', popular: true },
+  { slug: 'apex-legends', name: 'Apex Legends', status: 'Updating', popular: true },
 ]
 
 export function getGame(slug: string) {
@@ -17,15 +17,15 @@ export function getGame(slug: string) {
 }
 
 export function guidePath(slug: string) {
-  return `/${slug}-hacks`
+  return slug === 'apex-legends' ? '/apex-legends-cheats' : `/${slug}-cheats`
 }
 
 export function parseGuideSlug(param: string) {
-  return param.endsWith('-hacks') ? param.slice(0, -6) : param
+  return param.endsWith('-cheats') ? param.slice(0, -7) : param
 }
 
 /**
- * Feature list tuned to what ranks for WARDOGS Hacks
+ * Feature list tuned to what ranks for Apex Legends Cheats
  * Feature bullets for the product page — ESP & awareness first.
  */
 export const GUIDE_FEATURES = [
@@ -34,12 +34,12 @@ export const GUIDE_FEATURES = [
     text: 'Highlight enemy and friendly players with distance, team and health information when supported by the current build.',
   },
   {
-    name: 'Vehicle ESP',
-    text: 'Track combat and logistics vehicles across WARDOGS’ large combined-arms battlefield.',
+    name: 'Loot ESP',
+    text: 'Highlight weapons, armor, attachments, healing items and death boxes with configurable filters.',
   },
   {
     name: '2D Radar',
-    text: 'Map-style awareness for nearby players and vehicles while teams contest the moving Control Zone.',
+    text: 'Map-style awareness for nearby squads so you can read rotations and approaching third parties.',
   },
   {
     name: 'Aim assistance',
@@ -51,15 +51,15 @@ export const GUIDE_FEATURES = [
   },
   {
     name: 'Configurable hotkeys',
-    text: 'Toggle visual and aim features quickly without leaving a 100-player match.',
+    text: 'Toggle visual and aim features quickly without leaving a battle royale or Mixtape match.',
   },
   {
-    name: 'Steam Early Access support',
-    text: 'Compatibility is tracked against the Windows Early Access build released on September 10, 2026.',
+    name: 'Steam and EA app support',
+    text: 'Compatibility is tracked against current Windows builds distributed through Steam and the EA app.',
   },
   {
     name: 'Patch status + support',
-    text: 'Updating or Undetected status is reviewed after WARDOGS client patches before access is recommended.',
+    text: 'Updating or Undetected status is reviewed after Apex Legends client patches before access is recommended.',
   },
 ] as const
 

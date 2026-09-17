@@ -23,13 +23,13 @@ export type BlogPost = {
 export const BLOGS: BlogPost[] = [
   {
     slug: 'features-list',
-    title: 'WARDOGS Hacks Features List',
+    title: 'Apex Legends Cheats Features List',
     excerpt:
-      'Full features list before you buy WARDOGS Hacks — player ESP, vehicle ESP, radar, soft aim and stream-proof options.',
-    metaTitle: 'WARDOGS ESP, Radar & Soft Aim Feature List',
+      'Full features list before you buy Apex Legends Cheats — player ESP, loot ESP, radar, soft aim and stream-proof options.',
+    metaTitle: 'Apex Legends ESP, Radar & Soft Aim Feature List',
     metaDescription:
-      'Compare WARDOGS player ESP, vehicle ESP, 2D radar, soft aim and stream-proof features included before checkout.',
-    searchTerms: 'features player esp vehicle esp radar soft aim stream-proof',
+      'Compare Apex Legends player ESP, loot ESP, 2D radar, soft aim and stream-proof features included before checkout.',
+    searchTerms: 'features player esp loot esp radar soft aim stream-proof',
     date: '2026-09-15',
     readMinutes: 6,
     tag: 'Features',
@@ -37,7 +37,7 @@ export const BLOGS: BlogPost[] = [
       {
         heading: 'What you get when you buy',
         body: [
-          'WARDOGS Hacks is one product for WARDOGS on Windows Early Access. You are buying a loader + license with live Undetected / Updating status on wardogshacks.net — not a random multi-game pack.',
+          'Apex Legends Cheats is one product for Apex Legends on Windows PC. You are buying a loader + license with live Undetected / Updating status on apexlegendscheats.org — not a random multi-game pack.',
           'Open the product page, confirm status, then checkout. Delivery is digital on supported builds.',
         ],
       },
@@ -45,7 +45,7 @@ export const BLOGS: BlogPost[] = [
         heading: 'Features list',
         body: [
           'Player ESP / wallhack — boxes, skeletons, distance and health through terrain and buildings.',
-          'Vehicle ESP — combat and logistics vehicles marked before they flank you.',
+          'Loot ESP — weapons, armor, attachments, healing items and death boxes with configurable filters.',
           '2D radar — map-style awareness for off-screen threats.',
           'Soft aim — adjustable FOV, smoothing and hitbox; leave it off if you only want ESP.',
           'Stream-proof — hide supported overlays from capture when you clip or go live.',
@@ -55,19 +55,19 @@ export const BLOGS: BlogPost[] = [
       {
         heading: 'Next step',
         body: [
-          'Read the hotkeys and setup guides, then buy WARDOGS Hacks when status is Undetected.',
+          'Read the hotkeys and setup guides, then buy Apex Legends Cheats when status is Undetected.',
         ],
       },
     ],
   },
   {
     slug: 'hotkeys',
-    title: 'WARDOGS Hacks Hotkeys',
+    title: 'Apex Legends Cheats Hotkeys',
     excerpt:
-      'Hotkeys and menu keys for WARDOGS Hacks after load — open menu, toggles, and what to leave unbound.',
-    metaTitle: 'WARDOGS ESP Menu Hotkeys | Post-Checkout Setup',
+      'Hotkeys and menu keys for Apex Legends Cheats after load — open menu, toggles, and what to leave unbound.',
+    metaTitle: 'Apex Legends ESP Menu Hotkeys | Post-Checkout Setup',
     metaDescription:
-      'Hotkeys for WARDOGS Hacks after you buy and load: open menu, ESP toggles, radar, soft aim. Simple key list for WARDOGS.',
+      'Hotkeys for Apex Legends Cheats after you buy and load: open menu, ESP toggles, radar, soft aim. Simple key list for Apex Legends.',
     searchTerms: 'hotkeys menu keys esp toggle radar soft aim',
     date: '2026-09-15',
     readMinutes: 4,
@@ -76,7 +76,7 @@ export const BLOGS: BlogPost[] = [
       {
         heading: 'After load',
         body: [
-          'Buy WARDOGS Hacks, check Undetected, launch the game, run the loader, wait for a clean inject. Then open the menu with the key listed in your delivery notes (build-specific).',
+          'Buy Apex Legends Cheats, check Undetected, launch the game, run the loader, wait for a clean inject. Then open the menu with the key listed in your delivery notes (build-specific).',
           'If the menu does not open, do not spam keys — reopen support with your order ID and build name.',
         ],
       },
@@ -93,19 +93,19 @@ export const BLOGS: BlogPost[] = [
       {
         heading: 'Keep it simple',
         body: [
-          'Bind only what you use. Extra binds get pressed mid-fight and look obvious. Save your layout once, then re-check status after every WARDOGS patch before you load again.',
+          'Bind only what you use. Extra binds get pressed mid-fight and look obvious. Save your layout once, then re-check status after every Apex Legends patch before you load again.',
         ],
       },
     ],
   },
   {
     slug: 'complete-setup',
-    title: 'How to Complete WARDOGS Hacks Setup',
+    title: 'How to Complete Apex Legends Cheats Setup',
     excerpt:
-      'Complete setup for WARDOGS Hacks: buy, disable blockers, launch WARDOGS, load, enable ESP, confirm hotkeys.',
-    metaTitle: 'Complete WARDOGS Loader Setup & Load Order',
+      'Complete setup for Apex Legends Cheats: buy, disable blockers, launch Apex Legends, load, enable ESP, confirm hotkeys.',
+    metaTitle: 'Complete Apex Legends Loader Setup & Load Order',
     metaDescription:
-      'Complete setup after checkout: delivery checklist, antivirus exclusions, WARDOGS load order, troubleshooting, ESP configuration and hotkeys.',
+      'Complete setup after checkout: delivery checklist, antivirus exclusions, Apex Legends load order, troubleshooting, ESP configuration and hotkeys.',
     searchTerms: 'complete setup instructions load checklist loader order',
     date: '2026-09-15',
     readMinutes: 7,
@@ -114,7 +114,7 @@ export const BLOGS: BlogPost[] = [
       {
         heading: '1) Buy and confirm status',
         body: [
-          'Open Buy WARDOGS Hacks on wardogshacks.net. If status is Updating, wait. If Undetected, checkout and use only the official delivery link from this site.',
+          'Open Buy Apex Legends Cheats on apexlegendscheats.org. If status is Updating, wait. If Undetected, checkout and use only the official delivery link from this site.',
         ],
       },
       {
@@ -128,17 +128,17 @@ export const BLOGS: BlogPost[] = [
       {
         heading: '3) Load order',
         body: [
-          'Start WARDOGS on Steam.',
-          'Run the WARDOGS Hacks loader / license as delivered.',
+          'Start Apex Legends on Steam.',
+          'Run the Apex Legends Cheats loader / license as delivered.',
           'Wait for a successful load.',
-          'Open the menu → player ESP on → vehicle ESP on → radar on → stream-proof if you record.',
+          'Open the menu → player ESP on → loot ESP on → radar on → stream-proof if you record.',
           'Soft aim off unless you specifically want it.',
         ],
       },
       {
         heading: '4) Save and re-check after patches',
         body: [
-          'Save the config. After any WARDOGS / EAC update, check Undetected again before you load. Setup means nothing on a detected build.',
+          'Save the config. After any Apex Legends / EAC update, check Undetected again before you load. Setup means nothing on a detected build.',
         ],
       },
       {
@@ -160,12 +160,12 @@ export const BLOGS: BlogPost[] = [
   },
   {
     slug: 'disable-antivirus',
-    title: 'How to Turn Off Antivirus for WARDOGS Hacks',
+    title: 'How to Turn Off Antivirus for Apex Legends Cheats',
     excerpt:
-      'Turn off or allowlist antivirus so WARDOGS Hacks loader can run after purchase — Windows Defender and common AV steps.',
-    metaTitle: 'WARDOGS Loader Antivirus Exclusions | Windows Defender',
+      'Turn off or allowlist antivirus so Apex Legends Cheats loader can run after purchase — Windows Defender and common AV steps.',
+    metaTitle: 'Apex Legends Loader Antivirus Exclusions | Windows Defender',
     metaDescription:
-      'How to turn off or allowlist antivirus for WARDOGS Hacks after you buy — Defender exclusions, false positives, then load on Undetected.',
+      'How to turn off or allowlist antivirus for Apex Legends Cheats after you buy — Defender exclusions, false positives, then load on Undetected.',
     searchTerms: 'disable antivirus defender exclusion allowlist loader false positive',
     date: '2026-09-15',
     readMinutes: 5,
@@ -174,14 +174,14 @@ export const BLOGS: BlogPost[] = [
       {
         heading: 'Why this step exists',
         body: [
-          'Cheat loaders are often flagged as generic “trojan” heuristics even when you bought WARDOGS Hacks from wardogshacks.net. That blocks the load. Fix the AV step before you spam the loader.',
+          'Cheat loaders are often flagged as generic “trojan” heuristics even when you bought Apex Legends Cheats from apexlegendscheats.org. That blocks the load. Fix the AV step before you spam the loader.',
         ],
       },
       {
         heading: 'Windows Defender (common path)',
         body: [
           'Open Windows Security → Virus & threat protection → Manage settings.',
-          'Add an exclusion for the folder that holds your official WARDOGS Hacks loader (the path from your delivery email).',
+          'Add an exclusion for the folder that holds your official Apex Legends Cheats loader (the path from your delivery email).',
           'If the file was already quarantined, restore it from Protection history, then exclude the folder.',
           'Optional short window: pause real-time protection only while you load, then turn it back on. Prefer a permanent exclusion for the delivery folder over leaving Defender off all day.',
         ],
@@ -205,10 +205,10 @@ export const BLOGS: BlogPost[] = [
     slug: 'undetected-status',
     title: 'Check Undetected Before You Buy or Load',
     excerpt:
-      'Undetected vs Updating for WARDOGS Hacks — check status before checkout and before every load after a WARDOGS patch.',
-    metaTitle: 'WARDOGS Loader Status | Undetected or Updating',
+      'Undetected vs Updating for Apex Legends Cheats — check status before checkout and before every load after a Apex Legends patch.',
+    metaTitle: 'Apex Legends Loader Status | Undetected or Updating',
     metaDescription:
-      'Check the current Undetected or Updating state before checkout and before loading after a WARDOGS or EAC patch.',
+      'Check the current Undetected or Updating state before checkout and before loading after a Apex Legends or EAC patch.',
     searchTerms: 'undetected status updating eac patch load checkout',
     date: '2026-09-15',
     readMinutes: 4,
@@ -217,7 +217,7 @@ export const BLOGS: BlogPost[] = [
       {
         heading: 'Status is part of the purchase',
         body: [
-          'Do not buy or load blind. The product page shows Undetected or Updating after WARDOGS / EAC patches. That status is the go / no-go for WARDOGS Hacks.',
+          'Do not buy or load blind. The product page shows Undetected or Updating after Apex Legends / EAC patches. That status is the go / no-go for Apex Legends Cheats.',
         ],
       },
       {

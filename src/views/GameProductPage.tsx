@@ -15,27 +15,31 @@ import { FaqSection } from '../components/FaqSection'
 import { CheckoutLink } from '../components/CheckoutLink'
 import { NotFoundPage } from './NotFoundPage'
 import { blogPath } from '../data/blogs'
-import { WARDOGS_HOME_VIDEO } from '../data/media'
+import {
+  APEX_PRODUCT_PREVIEW_MP4,
+  APEX_PRODUCT_PREVIEW_POSTER,
+  APEX_PRODUCT_PREVIEW_WEBM,
+} from '../data/media'
 
 function ProductPurchaseCard({ game }: { game: Game }) {
   return (
     <div className="page-card overflow-hidden rounded-2xl sm:rounded-3xl">
-      <CheckoutLink className="block" aria-label="Buy WARDOGS Hacks">
+      <CheckoutLink className="block" aria-label="Buy Apex Legends Cheats">
         <GameCover slug={game.slug} name={game.name} aspect="square" className="rounded-none" />
       </CheckoutLink>
       <div className="p-5 sm:p-8">
         <div className="flex items-center gap-3">
-          <div className="icon-well shrink-0 text-sm font-bold">WD</div>
+          <div className="icon-well shrink-0 text-sm font-bold">AL</div>
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-white">WARDOGS Hacks</p>
+            <p className="truncate text-sm font-semibold text-white">Apex Legends Cheats</p>
             <p className="text-xs text-white/45">
-              Status: {game.status} · WARDOGS · From ${PRODUCT_PRICE_USD}
+              Status: {game.status} · Apex Legends · From ${PRODUCT_PRICE_USD}
             </p>
           </div>
         </div>
 
         <CheckoutLink className="cta-gradient mt-5 block w-full rounded-full py-3.5 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:mt-6">
-          Buy WARDOGS Hacks
+          Buy Apex Legends Cheats
         </CheckoutLink>
         <p className="mt-3 text-center text-[11px] text-white/40">
           Instant delivery · Check Undetected first
@@ -53,7 +57,7 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
   const slug = parseGuideSlug(guideSlug)
   const game = getGame(slug)
 
-  if (!guideSlug.endsWith('-hacks')) {
+  if (!guideSlug.endsWith('-cheats')) {
     const maybe = getGame(guideSlug)
     if (maybe) {
       if (typeof window !== 'undefined') {
@@ -88,33 +92,35 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
 
             <div className="mt-5 overflow-hidden rounded-2xl border border-z-soft/20 bg-black sm:mt-8">
               <div className="relative aspect-video w-full lg:aspect-[21/9]">
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src={`https://www.youtube-nocookie.com/embed/${WARDOGS_HOME_VIDEO.id}?rel=0`}
-                  title={WARDOGS_HOME_VIDEO.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                  loading="lazy"
-                />
+                <video
+                  className="absolute inset-0 h-full w-full object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={APEX_PRODUCT_PREVIEW_POSTER}
+                  aria-label="Apex Legends cheats gameplay preview"
+                >
+                  <source src={APEX_PRODUCT_PREVIEW_MP4} type="video/mp4" />
+                  <source src={APEX_PRODUCT_PREVIEW_WEBM} type="video/webm" />
+                </video>
               </div>
             </div>
 
             <div className="mt-5 sm:mt-6">
               <span className="inline-flex items-center gap-1.5 text-xs text-z-soft">
                 <Shield className="h-3.5 w-3.5 shrink-0 text-z-soft" strokeWidth={1.75} />
-                {game.status} · WARDOGS · EAC · {SITE_HOST}
+                {game.status} · Apex Legends · EAC · {SITE_HOST}
               </span>
 
               <h1 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-white sm:mt-4 sm:text-4xl lg:text-5xl">
-                WARDOGS Hack Features, Price & Checkout
+                Apex Legends Cheat Features, Price & Checkout
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/55 sm:mt-4 sm:text-base">
-                Compare player ESP, vehicle ESP, soft aim, 2D radar and stream-proof options.
+                Compare player ESP, loot ESP, soft aim, 2D radar and stream-proof options.
                 Confirm current status, then continue to checkout.
               </p>
               <CheckoutLink className="cta-gradient mt-5 inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90">
-                Buy WARDOGS Hacks
+                Buy Apex Legends Cheats
               </CheckoutLink>
             </div>
 
@@ -126,7 +132,7 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
               <div className="lg:col-span-7 space-y-10">
                 <div>
                   <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
-                    Included WARDOGS features
+                    Included Apex Legends features
                   </h2>
                   <div className="mt-4 grid gap-3 sm:grid-cols-2">
                     {GUIDE_FEATURES.map((f) => (
@@ -147,12 +153,12 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
 
                 <div className="space-y-3 text-sm leading-relaxed text-white/55">
                   <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
-                    Player ESP, vehicle ESP & radar
+                    Player ESP, loot ESP & radar
                   </h2>
                   <p>
-                    WARDOGS Hacks lead with player ESP through terrain and buildings, vehicle
-                    tags for combined-arms fights, and a 2D radar so you see rotations before
-                    they third-party your Control Zone hold.
+                    Apex Legends Cheats lead with player ESP through terrain and buildings, loot
+                    filters for faster resets, and a 2D radar so you see rotations before
+                    another squad third-parties your fight.
                   </p>
                   <p>
                     Soft aim stays optional. If you want the lowest-report playstyle, run ESP
@@ -162,10 +168,10 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
 
                 <div className="space-y-3 text-sm leading-relaxed text-white/55">
                   <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
-                    WARDOGS Undetected status (EAC)
+                    Apex Legends Undetected status (EAC)
                   </h2>
                   <p>
-                    WARDOGS uses Easy Anti-Cheat. After a client or EAC patch, builds can flip
+                    Apex Legends uses Easy Anti-Cheat. After a client or EAC patch, builds can flip
                     to Updating until tested. {SITE_NAME} shows live Undetected status so you
                     are not buying a dead loader from a screenshot farm.
                   </p>
@@ -199,30 +205,30 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
 
                 <div className="space-y-3 text-sm leading-relaxed text-white/55">
                   <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
-                    Why we stay WARDOGS-only
+                    Why we stay Apex Legends-only
                   </h2>
                   <p>
-                    {SITE_NAME} covers one title — WARDOGS on Windows Early Access. Status
+                    {SITE_NAME} covers one title — Apex Legends on Windows PC. Status
                     updates stay on one product page, not buried under a multi-game catalog.
                   </p>
                   <p>
                     Play the game from the{' '}
                     <a
-                      href="https://wardogs.com/"
+                      href="https://www.ea.com/games/apex-legends"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-white/80 underline-offset-2 hover:underline"
                     >
-                      official WARDOGS website
+                      official Apex Legends website
                     </a>{' '}
                     or{' '}
                     <a
-                      href="https://store.steampowered.com/app/1867240/WARDOGS/"
+                      href="https://store.steampowered.com/app/1172470/Apex_Legends/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-white/80 underline-offset-2 hover:underline"
                     >
-                      WARDOGS on Steam
+                      Apex Legends on Steam
                     </a>
                     . For hacks, stay on {SITE_HOST}:{' '}
                     <a href="/reviews" className="text-white/80 underline-offset-2 hover:underline">
@@ -255,12 +261,12 @@ export function GameProductPage({ guideSlug }: GameProductPageProps) {
         </section>
 
         <FaqSection
-          heading="WARDOGS Hacks product FAQ"
+          heading="Apex Legends Cheats product FAQ"
           intro="Status, features, delivery and load questions before checkout."
           items={PRODUCT_PAGE_FAQS}
         />
 
-        <SiteFooter currentPath="/wardogs-hacks" />
+        <SiteFooter currentPath="/apex-legends-cheats" />
       </main>
     </div>
   )

@@ -29,7 +29,7 @@ export function LocalVideoStrip({
   src = REVIEWS_VIDEO,
   startAt = 0,
   eager = false,
-  poster = '/media/thewardogs-hacks-esp-forest.jpg',
+  poster = '/media/apex-legends-battle-royale.jpg',
 }: LocalVideoStripProps) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const ref = useRef<HTMLVideoElement>(null)

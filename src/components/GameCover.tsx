@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { getGameImage, getImageAlt, getImageTitle, getProductHeroImage } from '../data/images'
+import { APEX_CARD_LOOP_MP4, APEX_CARD_LOOP_WEBM } from '../data/media'
 
 type GameCoverProps = {
   slug: string
@@ -54,6 +55,7 @@ export function GameCover({
         : 'aspect-[16/10]'
 
   const eager = priority || variant === 'product'
+  const cardLoop = slug === 'apex-legends' && variant === 'catalog'
 
   return (
     <div className={`relative overflow-hidden bg-z-elevated ${ratio} ${className}`}>
@@ -79,15 +81,32 @@ export function GameCover({
             if (index + 1 < sources.length) setIndex((i) => i + 1)
             else setFailed(true)
           }}
-          className={`game-cover-img absolute inset-0 h-full w-full object-cover object-center${variant === 'product' ? ' game-cover-img--color' : ''}`}
+          className={`game-cover-img absolute inset-0 z-0 h-full w-full object-cover object-center${variant === 'product' ? ' game-cover-img--color' : ''}`}
         />
-      ) : (
+      ) : null}
+      {cardLoop && !failed && src ? (
+        <video
+          className={`game-cover-img absolute inset-0 z-[1] h-full w-full object-cover object-center${variant === 'product' ? ' game-cover-img--color' : ''}`}
+          poster={src}
+          muted
+          autoPlay
+          loop
+          playsInline
+          preload="none"
+          aria-hidden
+          tabIndex={-1}
+        >
+          <source src={APEX_CARD_LOOP_MP4} type="video/mp4" />
+          <source src={APEX_CARD_LOOP_WEBM} type="video/webm" />
+        </video>
+      ) : null}
+      {failed || !src ? (
         <div className="absolute inset-0 flex items-center justify-center bg-z-elevated">
           <span className="px-3 text-center text-sm font-semibold tracking-tight text-white/25">
             {name}
           </span>
         </div>
-      )}
+      ) : null}
       <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/15" />
     </div>

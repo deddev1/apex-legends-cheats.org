@@ -18,9 +18,9 @@ const { seo, jsonLdExtra = [], bodyClass = 'bg-z-bg text-z-ink' } = Astro.props
 const url = absoluteUrl(seo.path)
 const image = seo.image || OG_IMAGE
 const imageUrl = image.startsWith('http') ? image : absoluteUrl(image)
-const isProduct = seo.path === '/wardogs-hacks'
+const isProduct = seo.path === '/apex-legends-cheats'
 const imageType = image.endsWith('.webp') ? 'image/webp' : 'image/jpeg'
-const isGameplayImage = image.includes('/media/wardogs-')
+const isGameplayImage = image.includes('/media/apex-legends-')
 const imageWidth = isGameplayImage ? 800 : 1200
 const imageHeight = isGameplayImage ? 450 : 630
 const robots =
@@ -46,7 +46,7 @@ const isHome = seo.path === '/' || seo.path === ''
       <link
         rel="preload"
         as="image"
-        href="/media/wardogs-soldier-hero.jpg"
+        href="/media/apex-hero-poster.jpg"
         type="image/jpeg"
         fetchpriority="high"
       />

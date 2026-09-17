@@ -1,22 +1,29 @@
+import { existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
 import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 
+const require = createRequire(import.meta.url)
 const root = join(fileURLToPath(new URL('.', import.meta.url)), '..')
 const ogDir = join(root, 'public', 'og')
 const mediaDir = join(root, 'public', 'media')
+const videoDir = join(root, 'public', 'videos')
+const cheatDir = join(root, 'source-media', 'cheat')
 
 await Promise.all([
   mkdir(ogDir, { recursive: true }),
   mkdir(mediaDir, { recursive: true }),
+  mkdir(videoDir, { recursive: true }),
 ])
 
 function escapeXml(value) {
   return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 }
 
-function artwork(width, height, eyebrow, title, subtitle, footer = 'wardogshacks.net') {
+function artwork(width, height, eyebrow, title, subtitle, footer = 'apexlegendscheats.org') {
   const titleSize = Math.round(width * 0.066)
   const subtitleSize = Math.round(width * 0.026)
   return Buffer.from(`
@@ -46,73 +53,214 @@ function artwork(width, height, eyebrow, title, subtitle, footer = 'wardogshacks
   `)
 }
 
-await Promise.all([
-  sharp(
-    artwork(
-      1200,
-      630,
-      'PC EARLY ACCESS · LIVE STATUS',
-      'WARDOGS Hacks',
-      'Player ESP · Radar · Aim Assistance',
-    ),
-  )
-    .jpeg({ quality: 90, chromaSubsampling: '4:4:4' })
-    .toFile(join(ogDir, 'wardogs-hacks.jpg')),
-  sharp(
-    artwork(
-      1440,
-      810,
-      'PRODUCT DETAILS · WINDOWS PC',
-      'WARDOGS ESP & Radar',
-      'Features · Compatibility · Current Status',
-    ),
-  )
-    .webp({ quality: 88 })
-    .toFile(join(mediaDir, 'wardogs-product-hero.webp')),
-  sharp(
-    artwork(
-      1000,
-      1000,
-      'WARDOGS PRODUCT',
-      'ESP · Radar · Aim',
-      'Check compatibility before access',
-    ),
-  )
-    .webp({ quality: 88 })
-    .toFile(join(mediaDir, 'wardogs-product-cover.webp')),
-  sharp(
-    artwork(
-      1200,
-      675,
-      '100-PLAYER TACTICAL FPS',
-      'WARDOGS Hacks',
-      'Player intelligence · Vehicles · Control Zone',
-    ),
-  )
-    .jpeg({ quality: 90, chromaSubsampling: '4:4:4' })
-    .toFile(join(mediaDir, 'wardogs-tactical-fps.jpg')),
-  sharp(
-    artwork(
-      1200,
-      675,
-      'CONTROL ZONE · COMBINED ARMS',
-      'WARDOGS ESP & Radar',
-      'Built for the Windows Early Access release',
-    ),
-  )
-    .jpeg({ quality: 90, chromaSubsampling: '4:4:4' })
-    .toFile(join(mediaDir, 'wardogs-control-zone.jpg')),
-  sharp(
-    artwork(
-      1920,
-      1080,
-      'BULKHEAD · TEAM17 · PC EARLY ACCESS',
-      'WARDOGS Hacks',
-      'Tactical awareness for all-out warfare',
-    ),
-  )
-    .jpeg({ quality: 90, chromaSubsampling: '4:4:4' })
-    .toFile(join(mediaDir, 'wardogs-home-hero.jpg')),
-])
+function cheatPath(index) {
+  return join(cheatDir, `${String(index).padStart(2, '0')}.jpg`)
+}
 
-console.log('Generated first-party SEO and product artwork')
+function hasCheatSources() {
+  return [1, 2, 3, 4, 5, 6].every((i) => existsSync(cheatPath(i)))
+}
+
+async function fromCheat(index, width, height, outPath, format) {
+  const input = cheatPath(index)
+  let pipeline = sharp(input).rotate().resize(width, height, { fit: 'cover', position: 'centre' })
+  if (format === 'webp') {
+    pipeline = pipeline.webp({ quality: 76, effort: 4 })
+  } else {
+    pipeline = pipeline.jpeg({ quality: 78, mozjpeg: true })
+  }
+  await pipeline.toFile(outPath)
+}
+
+async function generatePlaceholderAssets() {
+  await Promise.all([
+    sharp(
+      artwork(
+        1200,
+        630,
+        'WINDOWS PC · LIVE STATUS',
+        'Apex Legends Cheats',
+        'Player ESP · Radar · Aim Assistance',
+      ),
+    )
+      .jpeg({ quality: 90, chromaSubsampling: '4:4:4' })
+      .toFile(join(ogDir, 'apex-legends-cheats.jpg')),
+    sharp(
+      artwork(
+        1440,
+        810,
+        'PRODUCT DETAILS · WINDOWS PC',
+        'Apex Legends ESP & Radar',
+        'Features · Compatibility · Current Status',
+      ),
+    )
+      .webp({ quality: 88 })
+      .toFile(join(mediaDir, 'apex-legends-product-hero.webp')),
+    sharp(
+      artwork(
+        1000,
+        1000,
+        'Apex Legends PRODUCT',
+        'ESP · Radar · Aim',
+        'Check compatibility before access',
+      ),
+    )
+      .webp({ quality: 88 })
+      .toFile(join(mediaDir, 'apex-legends-product-cover.webp')),
+    sharp(
+      artwork(
+        1200,
+        675,
+        'BATTLE ROYALE · WINDOWS PC',
+        'Apex Legends Cheats',
+        'Player intelligence · Loot · Ranked rotations',
+      ),
+    )
+      .jpeg({ quality: 90, chromaSubsampling: '4:4:4' })
+      .toFile(join(mediaDir, 'apex-legends-battle-royale.jpg')),
+    sharp(
+      artwork(
+        1200,
+        675,
+        'RANKED · BATTLE ROYALE',
+        'Apex Legends ESP & Radar',
+        'Built for current Steam and EA app builds',
+      ),
+    )
+      .jpeg({ quality: 90, chromaSubsampling: '4:4:4' })
+      .toFile(join(mediaDir, 'apex-legends-ranked-squad.jpg')),
+    sharp(
+      artwork(
+        1920,
+        1080,
+        'RESPAWN · EA · WINDOWS PC',
+        'Apex Legends Cheats',
+        'Awareness for battle royale and ranked play',
+      ),
+    )
+      .jpeg({ quality: 90, chromaSubsampling: '4:4:4' })
+      .toFile(join(mediaDir, 'apex-legends-soldier-hero.jpg')),
+  ])
+}
+
+async function generateCheatAssets() {
+  await Promise.all([
+    fromCheat(1, 800, 800, join(mediaDir, 'apex-legends-product-cover.webp'), 'webp'),
+    fromCheat(2, 1280, 720, join(mediaDir, 'apex-legends-product-hero.webp'), 'webp'),
+    fromCheat(3, 960, 540, join(mediaDir, 'apex-legends-battle-royale.jpg'), 'jpeg'),
+    fromCheat(4, 960, 540, join(mediaDir, 'apex-legends-ranked-squad.jpg'), 'jpeg'),
+    fromCheat(5, 1280, 720, join(mediaDir, 'apex-legends-soldier-hero.jpg'), 'jpeg'),
+    fromCheat(6, 1200, 630, join(ogDir, 'apex-legends-cheats.jpg'), 'jpeg'),
+  ])
+}
+
+function resolveFfmpeg() {
+  try {
+    return require('ffmpeg-static')
+  } catch {
+    return process.env.FFMPEG_PATH || 'ffmpeg'
+  }
+}
+
+function encodeHeroClip(ff, heroMp4, { start, duration, width, baseName, crfH264, crfVp9 }) {
+  const vf = `scale=${width}:-2:flags=lanczos`
+  const mp4Out = join(videoDir, `${baseName}.mp4`)
+  const webmOut = join(videoDir, `${baseName}.webm`)
+
+  const mp4 = spawnSync(
+    ff,
+    [
+      '-y',
+      '-ss',
+      String(start),
+      '-t',
+      String(duration),
+      '-i',
+      heroMp4,
+      '-an',
+      '-vf',
+      vf,
+      '-r',
+      '24',
+      '-c:v',
+      'libx264',
+      '-crf',
+      String(crfH264),
+      '-preset',
+      'fast',
+      '-movflags',
+      '+faststart',
+      '-pix_fmt',
+      'yuv420p',
+      mp4Out,
+    ],
+    { stdio: 'pipe' },
+  )
+  if (mp4.status !== 0) return false
+
+  spawnSync(
+    ff,
+    [
+      '-y',
+      '-ss',
+      String(start),
+      '-t',
+      String(duration),
+      '-i',
+      heroMp4,
+      '-an',
+      '-vf',
+      vf,
+      '-r',
+      '24',
+      '-c:v',
+      'libvpx-vp9',
+      '-crf',
+      String(crfVp9),
+      '-b:v',
+      '0',
+      '-row-mt',
+      '1',
+      '-deadline',
+      'good',
+      '-cpu-used',
+      '4',
+      webmOut,
+    ],
+    { stdio: 'pipe' },
+  )
+  return true
+}
+
+function encodeHeroClips() {
+  const heroMp4 = join(videoDir, 'apex-hero.mp4')
+  if (!existsSync(heroMp4)) return
+
+  const ff = resolveFfmpeg()
+  encodeHeroClip(ff, heroMp4, {
+    start: 1,
+    duration: 6,
+    width: 640,
+    baseName: 'apex-card-loop',
+    crfH264: 28,
+    crfVp9: 36,
+  })
+  encodeHeroClip(ff, heroMp4, {
+    start: 0,
+    duration: 8,
+    width: 854,
+    baseName: 'apex-product-preview',
+    crfH264: 28,
+    crfVp9: 35,
+  })
+}
+
+if (hasCheatSources()) {
+  await generateCheatAssets()
+  console.log('Generated optimized gameplay media from source-media/cheat')
+} else {
+  await generatePlaceholderAssets()
+  console.log('Generated first-party SEO and product artwork (add source-media/cheat/01–06.jpg for gameplay shots)')
+}
+
+encodeHeroClips()

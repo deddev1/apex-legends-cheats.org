@@ -3,8 +3,8 @@
  * IMPORTANT: Always fetch assets via https://assets.local — never the request
  * hostname — or Cloudflare returns HTTP 522 on custom domains.
  */
-const CANONICAL_HOST = 'wardogshacks.net'
-const LEGACY_HOSTS = new Set(['www.wardogshacks.net'])
+const CANONICAL_HOST = 'apexlegendscheats.org'
+const LEGACY_HOSTS = new Set(['www.apexlegendscheats.org'])
 
 function needsCanonicalRedirect(url) {
   const host = url.hostname.toLowerCase()

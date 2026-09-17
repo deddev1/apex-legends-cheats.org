@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 
-const HERO_VIDEO = '/videos/black-angel.webm'
-const START_AT = 5
+const HERO_VIDEO_BASE = '/videos/apex-hero'
+const HERO_POSTER = '/media/apex-hero-poster.jpg'
+const START_AT = 0
+/** Hero WebM is larger than MP4 in our encode — prefer MP4 when both are present. */
+const HERO_WEBM_FIRST = false
 
 type VideoBgProps = {
   /** Static full-bleed hero image — skips video when set (homepage only). */
   image?: string
   imageAlt?: string
+  /** Stronger dark + violet overlay for headline contrast (homepage). */
+  readable?: boolean
 }
 
 function prefersReducedMotion() {
@@ -16,13 +21,59 @@ function prefersReducedMotion() {
   )
 }
 
-export function VideoBg({ image, imageAlt = '' }: VideoBgProps) {
+export function VideoBg({ image, imageAlt = '', readable = false }: VideoBgProps) {
+  const wrapRef = useRef<HTMLDivElement>(null)
   const ref = useRef<HTMLVideoElement>(null)
   const [visible, setVisible] = useState(Boolean(image))
   const [failed, setFailed] = useState(false)
+  const [loadVideo, setLoadVideo] = useState(false)
 
   useEffect(() => {
-    if (image || prefersReducedMotion()) return
+    if (image) return
+
+    if (prefersReducedMotion()) {
+      setVisible(true)
+      return
+    }
+
+    let cancelled = false
+    const arm = () => {
+      if (!cancelled) setLoadVideo(true)
+    }
+
+    const idleId =
+      typeof window.requestIdleCallback === 'function'
+        ? window.requestIdleCallback(arm, { timeout: 2800 })
+        : undefined
+    const fallbackTimer = idleId === undefined ? window.setTimeout(arm, 400) : undefined
+
+    const root = wrapRef.current
+    const observer =
+      typeof IntersectionObserver !== 'undefined' && root
+        ? new IntersectionObserver(
+            (entries) => {
+              if (entries.some((e) => e.isIntersecting)) {
+                arm()
+                observer.disconnect()
+              }
+            },
+            { rootMargin: '80px' },
+          )
+        : null
+    observer?.observe(root!)
+
+    return () => {
+      cancelled = true
+      if (idleId !== undefined && typeof window.cancelIdleCallback === 'function') {
+        window.cancelIdleCallback(idleId)
+      }
+      if (fallbackTimer !== undefined) window.clearTimeout(fallbackTimer)
+      observer?.disconnect()
+    }
+  }, [image])
+
+  useEffect(() => {
+    if (image || !loadVideo || prefersReducedMotion()) return
 
     const video = ref.current
     if (!video) return
@@ -54,7 +105,6 @@ export function VideoBg({ image, imageAlt = '' }: VideoBgProps) {
     const play = () => {
       jumpStart()
       void video.play().then(show).catch(() => {
-        /* autoplay blocked — still reveal once a frame exists */
         if (video.readyState >= 2) show()
       })
     }
@@ -81,6 +131,7 @@ export function VideoBg({ image, imageAlt = '' }: VideoBgProps) {
 
     const onError = () => {
       setFailed(true)
+      setVisible(true)
     }
 
     video.addEventListener('loadeddata', onLoadedData)
@@ -90,11 +141,8 @@ export function VideoBg({ image, imageAlt = '' }: VideoBgProps) {
     video.addEventListener('ended', onEnded)
     video.addEventListener('error', onError)
 
-    // Failsafe: never leave the hero blank if play/seek stalls
-    showTimer = setTimeout(show, 1800)
-
-    if (video.readyState >= 2) onLoadedData()
-    else video.load()
+    showTimer = setTimeout(show, 2200)
+    video.load()
 
     return () => {
       cancelled = true
@@ -106,10 +154,15 @@ export function VideoBg({ image, imageAlt = '' }: VideoBgProps) {
       video.removeEventListener('ended', onEnded)
       video.removeEventListener('error', onError)
     }
-  }, [image])
+  }, [image, loadVideo])
+
+  const videoShowing = loadVideo && visible && !failed && !image
 
   return (
-    <div className="hero-video-wrap absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+    <div
+      ref={wrapRef}
+      className={`hero-video-wrap absolute inset-0 z-0 overflow-hidden pointer-events-none select-none${readable ? ' hero-video--readable' : ''}`}
+    >
       <div className="absolute inset-0 z-0 bg-z-bg" aria-hidden />
       {image ? (
         <img
@@ -123,28 +176,62 @@ export function VideoBg({ image, imageAlt = '' }: VideoBgProps) {
             visible ? 'opacity-100' : 'opacity-0'
           }`}
         />
-      ) : !failed ? (
-        <video
-          ref={ref}
-          className={`hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover transition-opacity duration-700 ${
-            visible ? 'opacity-100' : 'opacity-0'
-          }`}
-          src={HERO_VIDEO}
-          muted
-          playsInline
-          loop
-          preload="metadata"
-          controls={false}
-          disablePictureInPicture
-          disableRemotePlayback
-          aria-hidden
-          tabIndex={-1}
-        />
-      ) : null}
+      ) : (
+        <>
+          <img
+            src={HERO_POSTER}
+            alt=""
+            width={1280}
+            height={720}
+            decoding="async"
+            fetchPriority="high"
+            className={`hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-center transition-opacity duration-700 ${
+              videoShowing ? 'opacity-0' : 'opacity-100'
+            }`}
+            aria-hidden
+          />
+          {loadVideo && !failed ? (
+            <video
+              ref={ref}
+              className={`hero-video-bg absolute inset-0 z-[1] h-full w-full object-cover object-[center_center] transition-opacity duration-700 ${
+                videoShowing ? 'opacity-100' : 'opacity-0'
+              }`}
+              poster={HERO_POSTER}
+              muted
+              playsInline
+              loop
+              preload="none"
+              controls={false}
+              disablePictureInPicture
+              disableRemotePlayback
+              aria-hidden
+              tabIndex={-1}
+            >
+              {HERO_WEBM_FIRST ? (
+                <>
+                  <source src={`${HERO_VIDEO_BASE}.webm`} type="video/webm" />
+                  <source src={`${HERO_VIDEO_BASE}.mp4`} type="video/mp4" />
+                </>
+              ) : (
+                <>
+                  <source src={`${HERO_VIDEO_BASE}.mp4`} type="video/mp4" />
+                  <source src={`${HERO_VIDEO_BASE}.webm`} type="video/webm" />
+                </>
+              )}
+            </video>
+          ) : null}
+        </>
+      )}
       <div className="hero-video-tint pointer-events-none absolute inset-0 z-[2]" aria-hidden />
       <div className="hero-video-tint-glow pointer-events-none absolute inset-0 z-[2]" aria-hidden />
-      <div className="absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent" />
-      <div className="absolute inset-x-0 top-0 z-[3] h-24 bg-gradient-to-b from-z-bg/70 to-transparent" />
+      <div
+        className="hero-video-edge-bottom absolute inset-x-0 bottom-0 z-[3] h-40 bg-gradient-to-t from-z-bg via-z-bg/80 to-transparent"
+        aria-hidden
+      />
+      <div
+        className="hero-video-edge-top absolute inset-x-0 top-0 z-[3] h-24 bg-gradient-to-b from-z-bg/70 to-transparent"
+        aria-hidden
+      />
     </div>
   )
 }

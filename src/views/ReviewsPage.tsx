@@ -38,12 +38,12 @@ export function ReviewsPage() {
               {SITE_NAME} · Community reviews
             </p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-              WARDOGS Hacks Reviews
+              Apex Legends Cheats Reviews
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/55">
-              Reviews from WARDOGS players who bought WARDOGS Hacks — ESP accuracy,
+              Reviews from Apex Legends players who bought Apex Legends Cheats — ESP accuracy,
               Undetected honesty, and whether the build held after the last patch. Read the{' '}
-              <a href="/wardogs-hacks" className="text-white/80 underline-offset-2 hover:underline">
+              <a href="/apex-legends-cheats" className="text-white/80 underline-offset-2 hover:underline">
                 product page
               </a>
               ,{' '}
@@ -54,9 +54,9 @@ export function ReviewsPage() {
               <a href="/forums" className="text-white/80 underline-offset-2 hover:underline">
                 forums
               </a>
-              . Play WARDOGS via{' '}
+              . Play Apex Legends via{' '}
               <a
-                href="https://store.steampowered.com/app/1867240/WARDOGS/"
+                href="https://store.steampowered.com/app/1172470/Apex_Legends/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/80 underline-offset-2 hover:underline"
@@ -66,7 +66,7 @@ export function ReviewsPage() {
               .
             </p>
             <p className="mt-3 text-sm text-white/45" aria-label="Aggregate rating">
-              Average {aggregate.ratingValue} / 5 from {aggregate.reviewCount} WARDOGS Hacks
+              Average {aggregate.ratingValue} / 5 from {aggregate.reviewCount} Apex Legends Cheats
               reviews
             </p>
           </div>
@@ -86,7 +86,7 @@ export function ReviewsPage() {
             src="/videos/reviews-neon"
             startAt={0}
             eager
-            poster="/media/thewardogs-hacks-esp-river.jpg"
+            poster="/media/apex-legends-ranked-squad.jpg"
             className="video-strip--reviews"
           />
         </section>
@@ -94,7 +94,7 @@ export function ReviewsPage() {
         <section className="page-x py-14 sm:py-16">
           <div className="mx-auto max-w-6xl">
             <h2 className="mb-6 text-xl font-semibold tracking-tight text-white">
-              Latest WARDOGS Hacks feedback
+              Latest Apex Legends Cheats feedback
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {REVIEWS.map((review) => (
@@ -143,19 +143,19 @@ export function ReviewsPage() {
                 Next step
               </p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                Ready to buy WARDOGS Hacks?
+                Ready to buy Apex Legends Cheats?
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-white/55">
                 Open the guide, confirm Undetected status, then checkout — or visit{' '}
                 <a href="/support" className="text-white underline-offset-2 hover:underline">
-                  WARDOGS Hacks support
+                  Apex Legends Cheats support
                 </a>{' '}
                 for load and inject help.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
               <a
-                href="/wardogs-hacks"
+                href="/apex-legends-cheats"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
               >
                 Product details

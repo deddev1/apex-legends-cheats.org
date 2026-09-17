@@ -1,20 +1,20 @@
 import { blogPath } from './blog-paths'
 
-/** Official WARDOGS destinations for factual game context. */
-export const OFFICIAL_WARDOGS_LINKS = [
+/** Official Apex Legends destinations for factual game context. */
+export const OFFICIAL_APEX_LINKS = [
   {
-    label: 'WARDOGS official website',
-    href: 'https://wardogs.com/',
-    description: 'Official WARDOGS website',
+    label: 'Apex Legends official website',
+    href: 'https://www.ea.com/games/apex-legends',
+    description: 'Official Apex Legends website',
   },
   {
-    label: 'WARDOGS on Steam',
-    href: 'https://store.steampowered.com/app/1867240/WARDOGS/',
-    description: 'Official Windows Early Access store page',
+    label: 'Apex Legends on Steam',
+    href: 'https://store.steampowered.com/app/1172470/Apex_Legends/',
+    description: 'Official Windows PC store page',
   },
   {
-    label: 'WARDOGS at Team17',
-    href: 'https://www.team17.com/games/wardogs',
+    label: 'Apex Legends at EA',
+    href: 'https://www.ea.com/games/apex-legends/apex-legends',
     description: 'Publisher page with official game details',
   },
 ] as const
@@ -24,7 +24,7 @@ export const SITE_PAGE_LINKS = [
   { label: 'Home', to: '/', description: 'Live status, price and checkout' },
   {
     label: 'Product page',
-    to: '/wardogs-hacks',
+    to: '/apex-legends-cheats',
     description: 'ESP, radar, aim and compatibility details',
   },
   {
@@ -74,12 +74,12 @@ export const SITE_GUIDE_LINKS = [
 ] as const
 
 /**
- * External checkout go-link → WARDOGS product.
+ * External checkout go-link → Apex Legends product.
  * Always pair with rel=nofollow so crawlers do not index the redirect.
  */
 const CHECKOUT_HOST = ['za', 'deyo', '.com'].join('')
 const CHECKOUT_REF = ['Q', 'R', 'H'].join('')
-const CHECKOUT_PRODUCT = '/products/wardogs-hacks'
+const CHECKOUT_PRODUCT = '/products/apex-legends'
 
 export const CHECKOUT_URL = `https://${CHECKOUT_HOST}/go/${CHECKOUT_REF}?to=${encodeURIComponent(CHECKOUT_PRODUCT)}`
 

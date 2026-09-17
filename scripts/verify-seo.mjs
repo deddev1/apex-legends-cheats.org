@@ -3,7 +3,7 @@ import { join, relative } from 'node:path'
 
 const root = join(import.meta.dirname, '..')
 const dist = join(root, 'dist')
-const site = 'https://wardogshacks.net'
+const site = 'https://apexlegendscheats.org'
 const failures = []
 
 function fail(message) {
@@ -67,7 +67,7 @@ for (const file of files) {
 }
 
 const home = readFileSync(join(dist, 'index.html'), 'utf8')
-const product = readFileSync(join(dist, 'wardogs-hacks', 'index.html'), 'utf8')
+const product = readFileSync(join(dist, 'apex-legends-cheats', 'index.html'), 'utf8')
 const reviews = readFileSync(join(dist, 'reviews', 'index.html'), 'utf8')
 const faq = readFileSync(join(dist, 'faq', 'index.html'), 'utf8')
 const support = readFileSync(join(dist, 'support', 'index.html'), 'utf8')
@@ -80,10 +80,10 @@ const importantPages = [
   readFileSync(join(dist, 'forums', 'index.html'), 'utf8'),
 ]
 
-if (!home.includes('<title>WARDOGS Hacks | ESP, Aimbot &amp; Radar for PC</title>')) {
+if (!home.includes('<title>Apex Legends Cheats | ESP, Aimbot &amp; Radar for PC</title>')) {
   fail('Homepage does not own the exact transactional title')
 }
-if (product.includes('<title>Buy WARDOGS Hacks')) fail('Product details page competes with homepage')
+if (product.includes('<title>Buy Apex Legends Cheats')) fail('Product details page competes with homepage')
 if ((faq.match(/"@type":"FAQPage"/g) || []).length !== 1) fail('/faq must own one FAQPage')
 for (const [name, html] of [
   ['home', home],
@@ -96,17 +96,16 @@ for (const [name, html] of [
 for (const [name, html] of [
   ['home', home],
   ['product', product],
-  ['reviews', reviews],
 ]) {
-  if (!html.includes('"@id":"https://wardogshacks.net/#product"')) {
+  if (!html.includes('"@id":"https://apexlegendscheats.org/#product"')) {
     fail(`${name}: missing shared Product ID`)
   }
 }
-if ((reviews.match(/"@type":"Review"/g) || []).length !== 12) {
-  fail('Reviews schema must contain exactly 12 visible buyer reviews')
+if (reviews.includes('"@type":"Review"') || reviews.includes('"@type":"AggregateRating"')) {
+  fail('/reviews must not emit Review or AggregateRating schema (on-page reviews only)')
 }
-if (!reviews.includes('"reviewCount":12') || !reviews.includes('"ratingValue":"4.6"')) {
-  fail('Reviews AggregateRating must report 12 reviews averaging 4.6')
+if (!product.includes('<title>Apex Legends Cheats Features &amp; Price | ESP, Radar, Aim</title>')) {
+  fail('Product page title must target features and price, not homepage keywords alone')
 }
 if (support.includes('noindex')) fail('Support page must be indexable')
 for (const file of files) {
@@ -116,12 +115,16 @@ for (const file of files) {
   if (html.includes('content="noindex')) fail(`${page}: content page must not be noindex`)
 }
 for (const html of importantPages) {
-  if (!html.includes('/media/wardogs-') && !html.includes('youtube-nocookie.com/embed/')) {
-    fail('An important indexed page is missing visible WARDOGS media')
+  if (
+    !html.includes('/media/apex-legends-') &&
+    !html.includes('youtube-nocookie.com/embed/') &&
+    !html.includes('/videos/apex-product-preview')
+  ) {
+    fail('An important indexed page is missing visible Apex Legends media')
   }
 }
-if (!home.includes('youtube-nocookie.com/embed/h5xrkTHh0nU')) {
-  fail('Homepage is missing the WARDOGS YouTube preview')
+if (!home.includes('youtube-nocookie.com/embed/bZ2kGpS_gQ4')) {
+  fail('Homepage is missing the official Apex Legends trailer')
 }
 
 const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8')
@@ -137,12 +140,12 @@ const pageLocs = urlBlocks.map((block) => block.match(/<loc>([^<]+)<\/loc>/)?.[1
 const uniqueSitemapUrls = new Set(pageLocs)
 const imageLocs = [...sitemap.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((match) => match[1])
 const requiredImages = [
-  '/media/wardogs-soldier-hero.jpg',
-  '/media/wardogs-tactical-fps.jpg',
-  '/media/wardogs-control-zone.jpg',
-  '/media/wardogs-product-hero.webp',
-  '/media/wardogs-product-cover.webp',
-  '/og/wardogs-hacks.jpg',
+  '/media/apex-legends-soldier-hero.jpg',
+  '/media/apex-legends-battle-royale.jpg',
+  '/media/apex-legends-ranked-squad.jpg',
+  '/media/apex-legends-product-hero.webp',
+  '/media/apex-legends-product-cover.webp',
+  '/og/apex-legends-cheats.jpg',
 ]
 
 for (const url of expectedUrls) {
@@ -193,7 +196,7 @@ if (!existsSync(join(dist, 'robots.txt'))) fail('dist/robots.txt is missing')
 if (!existsSync(join(dist, '_routes.json'))) fail('dist/_routes.json is missing')
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8')
-if (!robots.includes('Sitemap: https://wardogshacks.net/sitemap.xml')) {
+if (!robots.includes('Sitemap: https://apexlegendscheats.org/sitemap.xml')) {
   fail('robots.txt must point at the canonical HTTPS sitemap')
 }
 if (!robots.includes('Allow: /sitemap.xml')) {
@@ -209,12 +212,15 @@ if (!routes.exclude?.includes('/sitemap.xml') || !routes.exclude?.includes('/rob
 }
 
 for (const asset of [
-  'public/og/wardogs-hacks.jpg',
-  'public/media/wardogs-product-hero.webp',
-  'public/media/wardogs-product-cover.webp',
-  'public/media/wardogs-soldier-hero.jpg',
-  'public/media/wardogs-tactical-fps.jpg',
-  'public/media/wardogs-control-zone.jpg',
+  'public/og/apex-legends-cheats.jpg',
+  'public/media/apex-legends-product-hero.webp',
+  'public/media/apex-legends-product-cover.webp',
+  'public/media/apex-legends-soldier-hero.jpg',
+  'public/media/apex-legends-battle-royale.jpg',
+  'public/media/apex-legends-ranked-squad.jpg',
+  'public/videos/apex-card-loop.mp4',
+  'public/videos/apex-product-preview.mp4',
+  'public/media/apex-hero-poster.jpg',
   'public/sitemap.css',
   'public/_routes.json',
   'functions/_middleware.js',

@@ -81,13 +81,13 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 
             <div className="page-card mt-12 rounded-2xl p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-white">
-                Ready for WARDOGS Hacks?
+                Ready for Apex Legends Cheats?
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-white/55">
                 Check live Undetected status, then buy ESP, wallhack, and spoofer for
-                WARDOGS on {SITE_HOST}. Need help? Read{' '}
+                Apex Legends on {SITE_HOST}. Need help? Read{' '}
                 <a href="/support" className="text-white/80 underline-offset-2 hover:underline">
-                  WARDOGS Hacks support
+                  Apex Legends Cheats support
                 </a>
                 {' '}or{' '}
                 <a href="/reviews" className="text-white/80 underline-offset-2 hover:underline">
@@ -95,7 +95,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                 </a>
                 . Own the game via{' '}
                 <a
-                  href="https://store.steampowered.com/app/1867240/WARDOGS/"
+                  href="https://store.steampowered.com/app/1172470/Apex_Legends/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 underline-offset-2 hover:underline"
@@ -106,7 +106,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
               </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
-                  href={guidePath('wardogs')}
+                  href={guidePath('apex-legends')}
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white hover:bg-white/5"
                 >
                   Open product
@@ -118,7 +118,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
                   Support
                 </a>
                 <CheckoutLink className="cta-gradient inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium text-white">
-                  Buy WARDOGS Hacks
+                  Buy Apex Legends Cheats
                 </CheckoutLink>
               </div>
             </div>
