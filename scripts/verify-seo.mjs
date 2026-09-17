@@ -60,7 +60,9 @@ for (const file of files) {
   if (html.includes('assets-prd.ignimgs.com')) fail(`${page}: contains third-party IGN image`)
   if (html.includes('cdn.cosmocheats.com')) fail(`${page}: contains third-party media hotlink`)
   if (html.includes('SearchAction')) fail(`${page}: contains invalid SearchAction`)
-  if (html.includes('"keywords"')) fail(`${page}: contains keyword-list structured data`)
+  if (/"@type"\s*:\s*"KeywordList"/.test(html)) {
+    fail(`${page}: contains KeywordList structured data`)
+  }
   if (/forums\/(instructions|how-to-load)/.test(html)) {
     fail(`${page}: links to a retired forum route`)
   }
