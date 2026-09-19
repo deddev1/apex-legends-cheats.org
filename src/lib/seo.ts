@@ -91,7 +91,23 @@ export function webPageNode(seo: PageSeo) {
   return page
 }
 
-export function productCoreJsonLd() {
+function productOfferJsonLd(status: GameStatus) {
+  const availability =
+    status === 'Undetected' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'
+  return {
+    '@type': 'Offer',
+    url: `${SITE_URL}/apex-legends-cheats`,
+    availability,
+    price: PRODUCT_PRICE_USD,
+    priceCurrency: 'USD',
+    priceValidUntil: '2027-12-31',
+    itemCondition: 'https://schema.org/NewCondition',
+    seller: { '@id': `${SITE_URL}/#organization` },
+  }
+}
+
+/** Shared Product node — always includes `offers` (required by Google Product rich results). */
+export function productCoreJsonLd(status: GameStatus = 'Undetected') {
   return {
     '@type': 'Product',
     '@id': PRODUCT_ID,
@@ -102,14 +118,13 @@ export function productCoreJsonLd() {
     brand: { '@type': 'Brand', name: SITE_NAME },
     manufacturer: { '@id': `${SITE_URL}/#organization` },
     category: 'Apex Legends software',
+    offers: productOfferJsonLd(status),
   }
 }
 
 export function productDetailJsonLd(status: GameStatus) {
-  const availability =
-    status === 'Undetected' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'
   return {
-    ...productCoreJsonLd(),
+    ...productCoreJsonLd(status),
     image: absoluteAsset(PAGE_MEDIA.product.image),
     about: {
       '@type': 'VideoGame',
@@ -123,16 +138,6 @@ export function productDetailJsonLd(status: GameStatus) {
         value: 'Apex Legends',
       },
     ],
-    offers: {
-      '@type': 'Offer',
-      url: `${SITE_URL}/apex-legends-cheats`,
-      availability,
-      price: PRODUCT_PRICE_USD,
-      priceCurrency: 'USD',
-      priceValidUntil: '2027-12-31',
-      itemCondition: 'https://schema.org/NewCondition',
-      seller: { '@id': `${SITE_URL}/#organization` },
-    },
   }
 }
 

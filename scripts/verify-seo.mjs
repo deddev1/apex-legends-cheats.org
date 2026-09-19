@@ -126,6 +126,9 @@ for (const [name, html] of [
   if (!html.includes('"@id":"https://apexlegendscheats.org/#product"')) {
     fail(`${name}: missing shared Product ID`)
   }
+  if (!html.includes('"@type":"Offer"')) {
+    fail(`${name}: Product schema must include an Offer (Google rich results requirement)`)
+  }
 }
 if (reviews.includes('"@type":"Review"') || reviews.includes('"@type":"AggregateRating"')) {
   fail('/reviews must not emit Review or AggregateRating schema (on-page reviews only)')
